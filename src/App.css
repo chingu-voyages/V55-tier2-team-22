@@ -7,7 +7,8 @@
 
   color-scheme: light;
   color: #213547;
-  background-color: #ffffff;
+  background-color: #0D0D0D
+  ;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,16 +28,11 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+
 
 button {
   border-radius: 8px;
@@ -62,25 +58,65 @@ button:focus-visible {
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+
+
+/* HEADER STYLES */
+
+.container {
+  width: 80%;
+  max-width: 1300px;
   margin: 0 auto;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.header {
+  height: 100vh;
 }
 
-.card {
-  padding: 2em;
+.logo-name {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #05DBF2;
+  padding-bottom: .5em;
+  padding-top: .5em;
+  border-bottom: 1px solid white;
+  text-align: left;
+  width: 100%;
 }
 
+.header-mid {
+  text-align: center;
+  padding: 4em 0;
+}
+
+.header-mid h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0A8CBF;
+}
+
+.header-mid p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: white;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: .5em;
+}
+
+.search-bar {
+  width: 80%;
+  max-width: 600px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+  padding: 0.5em;
+  font-size: 1rem;
+}
+
+/* --- */
