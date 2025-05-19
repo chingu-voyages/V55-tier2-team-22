@@ -1,9 +1,23 @@
 .resource_section {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-wrap: wrap;
     margin: 3rem 1rem
+}
+
+.resource_card {
+   flex: 20%;
+   margin: 30px;
 }
 
 
 /* Spinner while waiting to load */
+.loadMore {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
 .loading {
     display: flex;
     justify-content: center;

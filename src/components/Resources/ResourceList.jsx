@@ -14,7 +14,7 @@ function ResourceList() {
       .then((data) => {
         setResources(data);
         setLoading(false);
-        console.log(data)
+        // console.log(data)
       })
       .catch((err) => {
         console.error('Failed to fetch resources:', err);
@@ -35,26 +35,32 @@ function ResourceList() {
     );
 
   return (
-    <div className={styles.resource_section}>
+    <>
+        <div className={styles.resource_section}>
         {
             resources.slice(0, visibleArticles).map((resource, id) => {
                 return (<ResourceCard
                     key={id}
                     title={resource.name}
                     url={resource.url}
+                    author={resource.author}
+                    date={resource.createdAt}
                     tags={resource.appliedTags}
                 />)
             })
         }
+    </div>
 
-        {/* Load more button */}
-
+    {/* Load more button */}
+    <div className={styles.loadMore}>
         {visibleArticles < resources.length && (
             <button onClick={() => setVisibleArticles((prev) => prev + 3)}>
                 Load More
             </button>
       )}
     </div>
+
+    </>
   );
 }
 
