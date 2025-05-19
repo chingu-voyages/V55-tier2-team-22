@@ -2,6 +2,7 @@ import { useState } from "react";
 import chinguLogo from "/chingu.png";
 import "./App.css";
 import Footer from "./components/Footer/footer";
+import ResourceList from "./components/Resources/ResourceList";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -13,12 +14,9 @@ function App() {
           <img src={chinguLogo} className="logo" alt="Chingu logo" />
         </a>
       </div>
-      <h1>Team #22 - The Ramens</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
+      {/* Show the resources fetched from the API */}
+      <ResourceList></ResourceList>
+      {/* Footer of the App */}
       <Footer></Footer>
     </>
   );
