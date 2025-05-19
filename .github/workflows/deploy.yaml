@@ -1,0 +1,41 @@
+name: Deploy to CF Pages
+run-name: Deploy to CF Pages, triggered by @${{ github.actor }} (${{ github.sha }})
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build and deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build app
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to preview site
+        uses: cloudflare/wrangler-action@v3
+        if: ${{ github.ref_name == 'dev'}}
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy
+
+      - name: Deploy to production site
+        uses: cloudflare/wrangler-action@v3
+        if: ${{ github.ref_name == 'main'}}
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy --branch main
