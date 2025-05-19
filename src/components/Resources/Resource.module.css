@@ -1,3 +1,8 @@
+.resource_section {
+    margin: 3rem 1rem
+}
+
+
 /* Spinner while waiting to load */
 .loading {
     display: flex;

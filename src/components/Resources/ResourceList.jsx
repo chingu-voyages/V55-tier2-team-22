@@ -5,6 +5,7 @@ import styles from './Resource.module.css';
 function ResourceList() {
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [visibleArticles, setVisibleArticles] = useState(6);
 
   useEffect(() => {
     fetch('https://seshatbe.up.railway.app/resources')
@@ -21,10 +22,11 @@ function ResourceList() {
       });
   }, []);
 
+//   Loading spinner
   function LoadingSpinner() {
     return <div className={styles.spinner}></div>;
     }
-
+//  While data is fetched show loading spinner
   if (loading) return (
     <div className={styles.loading}>
         <h2>Fetching Data... </h2>
@@ -33,9 +35,9 @@ function ResourceList() {
     );
 
   return (
-    <div>
+    <div className={styles.resource_section}>
         {
-            resources.map((resource, id) => {
+            resources.slice(0, visibleArticles).map((resource, id) => {
                 return (<ResourceCard
                     key={id}
                     title={resource.name}
@@ -44,6 +46,14 @@ function ResourceList() {
                 />)
             })
         }
+
+        {/* Load more button */}
+
+        {visibleArticles < resources.length && (
+            <button onClick={() => setVisibleArticles((prev) => prev + 3)}>
+                Load More
+            </button>
+      )}
     </div>
   );
 }
