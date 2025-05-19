@@ -1,8 +1,13 @@
 import React from 'react';
 import styles from './Resource.module.css';
+import useTagMap from './useTagMap'
 
 function ResourceCard({ title, url, author, date, tags }) {
+    // convert date into Object
     const createdAt = new Date(date);
+    // convert tags
+    const tagMap = useTagMap();
+    const convertedTag = (tags || []).map((id) => tagMap[id] || 'Unknown')
 
   return (
     <div className={styles.resource_card}>
@@ -20,8 +25,10 @@ function ResourceCard({ title, url, author, date, tags }) {
             })} </strong>
         </p>
 
-      {tags && tags.length > 0 && (
-        <p>Tags: {tags.join(', ')}</p>
+      {convertedTag && convertedTag.length > 0 && (
+        <p>Tags: 
+            <span className={styles.tags}> {convertedTag.join(', ')} </span>
+        </p>
       )}
     </div>
   );
