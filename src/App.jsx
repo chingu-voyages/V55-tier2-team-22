@@ -1,12 +1,9 @@
-import { useState } from "react";
 import chinguLogo from "/chingu.png";
 import "./App.css";
 import Footer from "./components/Footer/footer";
 import ResourceList from "./components/Resources/ResourceList";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <div>

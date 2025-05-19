@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ResourceCard from './ResourceCard';
+import styles from './Resource.module.css';
 
 function ResourceList() {
   const [resources, setResources] = useState([]);
@@ -20,7 +21,16 @@ function ResourceList() {
       });
   }, []);
 
-  if (loading) return <p>Fetching Data... </p>;
+  function LoadingSpinner() {
+    return <div className={styles.spinner}></div>;
+    }
+
+  if (loading) return (
+    <div className={styles.loading}>
+        <h2>Fetching Data... </h2>
+        <LoadingSpinner/>
+    </div>
+    );
 
   return (
     <div>
