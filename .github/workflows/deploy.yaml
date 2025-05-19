@@ -1,5 +1,5 @@
 name: Deploy to CF Pages
-run-name: Deploy to CF Pages, triggered by @${{ github.actor }} (${{ github.sha }})
+run-name: Deploy to CF Pages, triggered by @${{ github.actor }}
 
 on:
   push:
