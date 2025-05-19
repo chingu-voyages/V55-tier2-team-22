@@ -22,18 +22,10 @@ jobs:
           npm ci
           npm run build
 
-      - name: Deploy to preview site
+      # cloudflare/wrangler-action passes in the source branch automatically to `pages deploy`, so it's not 
+      # necessary to pass in a --branch flag to distinguish between Preview and Production deployments.
+      - name: Deploy
         uses: cloudflare/wrangler-action@v3
-        if: ${{ github.ref_name == 'dev'}}
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          command: pages deploy
-
-      - name: Deploy to production site
-        uses: cloudflare/wrangler-action@v3
-        if: ${{ github.ref_name == 'main'}}
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
