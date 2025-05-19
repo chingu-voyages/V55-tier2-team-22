@@ -15,7 +15,7 @@ function App() {
         </a>
       </div>
       {/* Show the resources fetched from the API */}
-      <ResourceList></ResourceList>
+      <ResourceList/>
       {/* Footer of the App */}
       <Footer></Footer>
     </>

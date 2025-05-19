@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ResourceCard from './ResourceCard';
 
 function ResourceList() {
   const [resources, setResources] = useState([]);
@@ -6,6 +7,7 @@ function ResourceList() {
 
   useEffect(() => {
     fetch('https://seshatbe.up.railway.app/resources')
+    // fetch('https://jsonplaceholder.typicode.com/posts')  //Test api if the one on Chingu isn't working
       .then((response) => response.json())
       .then((data) => {
         setResources(data);
@@ -18,10 +20,21 @@ function ResourceList() {
       });
   }, []);
 
-  if (loading) return console.log("fetching data");
+  if (loading) return <p>Fetching Data... </p>;
 
   return (
-    resources
+    <div>
+        {
+            resources.map((resource, id) => {
+                return (<ResourceCard
+                    key={id}
+                    title={resource.name}
+                    url={resource.url}
+                    tags={resource.appliedTags}
+                />)
+            })
+        }
+    </div>
   );
 }
 
