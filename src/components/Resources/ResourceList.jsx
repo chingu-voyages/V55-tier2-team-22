@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import ResourceCard from './ResourceCard';
 import styles from './Resource.module.css';
+import useTagMap from './useTagMap';
 
 function ResourceList() {
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(true);
   const [visibleArticles, setVisibleArticles] = useState(6);
+  const {loading:loadingTags} = useTagMap()
 
   useEffect(() => {
     fetch('https://seshatbe.up.railway.app/resources')
@@ -14,7 +16,7 @@ function ResourceList() {
       .then((data) => {
         setResources(data);
         setLoading(false);
-        // console.log(data)
+        console.log(data)
       })
       .catch((err) => {
         console.error('Failed to fetch resources:', err);
@@ -27,7 +29,7 @@ function ResourceList() {
     return <div className={styles.spinner}></div>;
     }
 //  While data is fetched show loading spinner
-  if (loading) return (
+  if (loading || loadingTags) return (
     <div className={styles.loading}>
         <h2>Fetching Data... </h2>
         <LoadingSpinner/>

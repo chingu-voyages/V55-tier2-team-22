@@ -7,12 +7,32 @@
 }
 
 .resource_card {
-   flex: 20%;
-   margin: 30px;
+   flex: 30%;
+   margin: 10px;
+   padding: 20px;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   height: 200px;
+   height: 250px;
+   background-color: white;
+   border-radius: 20px;
+   color: #0D0D0D;
+}
+
+.card_header {
+    border-bottom: 1.5px solid #0A8CBF;
+    min-height: 100px;
+}
+
+.card_header  h3 a {
+    color: #0D0D0D;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.resource_card  h3 a:hover {
+    color: #0A8CBF;
+    text-decoration: none;
 }
 
 .tags {
