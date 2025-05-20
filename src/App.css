@@ -1,5 +1,5 @@
 /* This is CSS specific to the App.jsx route. Global app styles should be added to index.css */
-
+@import "tailwindcss";
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -60,4 +60,3 @@ button:focus-visible {
 .card {
   padding: 2em;
 }
-

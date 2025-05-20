@@ -5,11 +5,11 @@
 /* Colors */
 
 :root {
-  --primary-blue-dark: #0F5FA6; /* Blue1 */
-  --secondary-blue:#0A8CBF; /* Blue2 */
-  --accent-blue: #04B2D9; /* Blue3 */
-  --highlight-blue: #05DBF2; /* Blue4 */
-  --black:#0D0D0D; /* Black */
+  --primary-blue-dark: #0f5fa6; /* Blue1 */
+  --secondary-blue: #0a8cbf; /* Blue2 */
+  --accent-blue: #04b2d9; /* Blue3 */
+  --highlight-blue: #05dbf2; /* Blue4 */
+  --black: #0d0d0d; /* Black */
   --white: white;
 }
 
@@ -19,71 +19,69 @@
 }
 
 body {
-    background-color: var(--black);
-    color: var(--white);
-    margin: 0 auto;
-    width: 80%;
+  background-color: var(--black);
+  color: var(--white);
+  margin: 0 auto;
+  width: 80%;
 }
 
 a {
-    color: var(--accent-blue);
-    font-weight: 500;
-    text-decoration: none;
+  color: var(--accent-blue);
+  font-weight: 500;
+  text-decoration: none;
 }
-
 
 a:hover {
-    color: var(--primary-blue-dark);
-    text-decoration: underline dotted var(--accent-blue);
+  color: var(--primary-blue-dark);
+  text-decoration: underline dotted var(--accent-blue);
 }
-
-
 
 /* Footer */
 footer {
-    border-top: 1px solid var(--accent-blue);
-    display: flex;
-    justify-content: space-between;
+  border-top: 1px solid var(--accent-blue);
+  display: flex;
+  justify-content: space-between;
 }
 
 .copyright .icon {
-    display: inline;
-    margin-right: 10px;
+  display: inline;
+  margin-right: 10px;
 }
 
 .copyright p {
-    font-size: 0.7em;
+  font-size: 0.7em;
 }
 
 .teamMembers {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 .developers {
-    display: flex;
-    align-items: baseline;
+  display: flex;
+  align-items: baseline;
 }
 
 .scrum-masters {
-    display: flex;
-    align-items: baseline;
+  display: flex;
+  align-items: baseline;
 }
 
-.developers>div, .scrum-masters>div {
-    margin: 10px 20px;
+.developers > div,
+.scrum-masters > div {
+  margin: 10px 20px;
 }
 
-.developers>h4, .scrum-masters>h4 {
-    margin-right: 30px;
+.developers > h4,
+.scrum-masters > h4 {
+  margin-right: 30px;
 }
 
 .social-links {
-    display: flex;
+  display: flex;
 }
 
-.social-links>a{
-    margin-right: 5px;
+.social-links > a {
+  margin-right: 5px;
 }
-

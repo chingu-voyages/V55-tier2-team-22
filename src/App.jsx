@@ -1,3 +1,4 @@
+import React from "react";
 import { useState } from "react";
 import chinguLogo from "/chingu.png";
 import "./App.css";
