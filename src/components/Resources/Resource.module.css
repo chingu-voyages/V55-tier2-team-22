@@ -24,7 +24,7 @@
 /* Card header */
 .card_header {
     border-bottom: 1.5px solid #0A8CBF;
-    min-height: 80px;
+    min-height: 100px;
 }
 
 .card_header  h3 a {
@@ -44,10 +44,16 @@
     margin: 10px 0;
 }
 
-.card_body p>span{
+.author{
     font-variant: small-caps;
     font-size: 18px;
 }
+
+.date {
+    font-style: italic;
+}
+
+/* Card Footer */
 
 .tags {
     background-color: #05DBF2;

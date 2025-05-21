@@ -1,48 +1,36 @@
 import React from 'react';
 import styles from './Resource.module.css';
-import useTagMap from './useTagMap'
 
-function ResourceCard({ title, url, author, date, tags }) {
-    // convert date into Object
-    const createdAt = new Date(date);
-    // convert tags
-    const tagMap = useTagMap();
-    const convertedTag = (tags || []).map((id) => tagMap[id] || 'Unknown')
+function ResourceCard({ title, url, author, date, tags, tagMap }) {
+  const createdAt = new Date(date);
+
+  // Safe tag lookup using string IDs
+  const convertedTags = (tags || []).map(id => tagMap[String(id)] || 'Unknown');
 
   return (
     <div className={styles.resource_card}>
-        <div className={styles.card_header}>
-            <h3>
-                <a href={url} target="_blank" rel="noopener noreferrer">
-                {title}
-                </a>
-            </h3>
-        </div>
+      <div className={styles.card_header}>
+        <h3>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {title}
+          </a>
+        </h3>
+      </div>
 
-        <div className={styles.card_body}>
-            <p>
-                <strong> By: </strong>
-                <span>{author} </span>
-            </p>
-            <p><strong> Published on: </strong>
-            {createdAt.toLocaleDateString('en-GB', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric',
-                    })}
-            </p>
+      <div className={styles.card_body}>
+        <p><strong>By:</strong> {author}</p>
+        <p><strong>Published on:</strong> {createdAt.toLocaleDateString('en-GB')}</p>
+      </div>
 
-        </div>
-
-        <div className={styles.card_footer}>
-            {convertedTag && convertedTag.length > 0 && (
-                <p>Tags:
-                    {convertedTag.map((tag, index) => (
-                        <span className={styles.tags} key={index}>{tag}</span>
-                    ))}
-                </p>
-      )}
-        </div>
+      <div className={styles.card_footer}>
+        {convertedTags.length > 0 && (
+          <p>Tags:
+            {convertedTags.map((tag, index) => (
+              <span className={styles.tags} key={index}>{tag}</span>
+            ))}
+          </p>
+        )}
+      </div>
     </div>
   );
 }
