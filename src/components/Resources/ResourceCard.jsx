@@ -20,20 +20,26 @@ function ResourceCard({ title, url, author, date, tags }) {
         </div>
 
         <div className={styles.card_body}>
-            <p>By: <strong>{author}</strong> </p>
-            <p>Published on: <strong>{createdAt.toLocaleDateString('en-GB', {
+            <p>
+                <strong> By: </strong>
+                <span>{author} </span>
+            </p>
+            <p><strong> Published on: </strong>
+            {createdAt.toLocaleDateString('en-GB', {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric',
-                    })} </strong>
+                    })}
             </p>
 
         </div>
 
         <div className={styles.card_footer}>
             {convertedTag && convertedTag.length > 0 && (
-                <p>Tags: 
-                    <span className={styles.tags}> {convertedTag.join(', ')} </span>
+                <p>Tags:
+                    {convertedTag.map((tag, index) => (
+                        <span className={styles.tags} key={index}>{tag}</span>
+                    ))}
                 </p>
       )}
         </div>
