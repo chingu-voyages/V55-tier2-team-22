@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> a972e19 (Backup set and Proxy server completely set up)
 {
   
     "name": "backend",
@@ -5,6 +9,7 @@
     "version": "1.0.0",
   
     "type": "module",
+<<<<<<< HEAD
   
     "main": "./src/index.js",
   
@@ -13,6 +18,11 @@
       
     "dev": "nodemon"
   
+=======
+    "main":"./src/index.js",
+    "scripts": {
+      "dev": "nodemon"
+>>>>>>> a972e19 (Backup set and Proxy server completely set up)
     },
   
     "dependencies": {
