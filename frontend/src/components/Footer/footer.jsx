@@ -72,7 +72,7 @@ const Footer = () => {
             );
           })}
         </div>
-        <div className="scrum-masters">
+        <div className="scrum-masters..">
           <h4>Scrum Masters</h4>
           {scrumMasters.map((member, index) => {
             return (
