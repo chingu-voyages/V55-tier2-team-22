@@ -1,0 +1,33 @@
+name: Deploy to CF Pages
+run-name: Deploy to CF Pages, triggered by @${{ github.actor }}
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build and deploy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Build app
+        run: |
+          npm ci
+          npm run build
+
+      # cloudflare/wrangler-action passes in the source branch automatically to `pages deploy`, so it's not 
+      # necessary to pass in a --branch flag to distinguish between Preview and Production deployments.
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy

@@ -1,4 +1,4 @@
-import React from 'react';
+import styles from './footer.module.css';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const developers = [
@@ -44,21 +44,21 @@ const scrumMasters = [
 const Footer = () => {
   return (
     <footer>
-        <div className='copyright'>
-            <FaGithub size={28} color='#05DBF2' className='icon'/>
+        <div className={styles.copyright}>
+            <FaGithub size={28} color='#05DBF2' className={styles.icon}/>
             <span><a href='https://github.com/chingu-voyages/V55-tier2-team-22'>GitHub Repository</a></span>
             <p>© 2025 App Name.</p>
             <p>This project was built by team 22 as part of the Chingu Voyage 55</p>
         </div>
-        <div className='teamMembers'>
-            <div className='developers'>
+        <div className={styles.teamMembers}>
+            <div className={styles.developers}>
                 <h4>Developers</h4>
                 {
                     developers.map((member, index) => {
                     return (
                         <div>
                             <p key={index}>{member.name}</p>
-                            <div className='social-links'>
+                            <div className={styles['social-links']}>
                                 <a href={member.github}><FaGithub color='#05DBF2'size={20} /></a>
                                 <a href={member.linkedIn}><FaLinkedin color='#05DBF2' size={20}/></a>
                             </div>
@@ -68,14 +68,14 @@ const Footer = () => {
                     })
                 }
             </div>
-            <div className='scrum-masters'>
+            <div className={styles.scrum_masters}>
                 <h4>Scrum Masters</h4>
                 {
                     scrumMasters.map((member, index) => {
                     return (
                         <div>
                             <p key={index}>{member.name}</p>
-                            <div className='social-links'>
+                            <div className={styles['social-links']}>
                                 <a href={member.linkedIn}><FaLinkedin color='#05DBF2' size={20}/></a>
                             </div>
                         </div>
