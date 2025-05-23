@@ -5,16 +5,21 @@ import styles from './Resource.module.css';
 function ResourceList() {
   const [resources, setResources] = useState([]);
   const [tagMap, setTagMap] = useState(null); // null until loaded
-  const [loading, setLoading] = useState(true);
+  const [status, setStatus] = useState('loading'); //loading, failed, succeeded
   const [visibleArticles, setVisibleArticles] = useState(6);
 
   useEffect(() => {
     async function fetchData() {
+      setStatus('loading')
       try {
         const [resourcesRes, tagsRes] = await Promise.all([
           fetch('https://seshatbe.up.railway.app/resources'),
           fetch('https://seshatbe.up.railway.app/tags'),
         ]);
+
+        if (!resourcesRes.ok || !tagsRes.ok) {
+        throw new Error('Fetch failed');
+      }
 
         const resourcesData = await resourcesRes.json();
         const tagsData = await tagsRes.json();
@@ -27,24 +32,37 @@ function ResourceList() {
 
         setResources(resourcesData);
         setTagMap(tagMapObj); // set AFTER map is ready
-        setLoading(false);
-      } catch (error) {
+        setStatus('succeeded');
+      }
+
+      catch (error) {
         console.error('Failed to fetch resources or tags:', error);
-        setLoading(false);
+        setStatus('failed');
       }
     }
 
     fetchData();
   }, []);
 
-  if (loading || !tagMap) {
+  if (status === 'failed') {
     return (
-      <div className={styles.loading}>
-        <h2>Fetching Data...</h2>
-        <div className={styles.spinner}></div>
+      <div className={styles.retry}>
+        <h2>Failed to load resources.</h2>
+        <p>Please try again later.</p>
+        <button onClick={() => window.location.reload()}>Retry</button>
       </div>
     );
   }
+
+  if (status === 'loading' || !tagMap) {
+      return (
+        <div className={styles.loading}>
+          <h2>Fetching Data...</h2>
+          <div className={styles.spinner}></div>
+        </div>
+      );
+    }
+
 
   return (
     <>

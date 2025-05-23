@@ -4,7 +4,7 @@ import styles from './Resource.module.css';
 function ResourceCard({ title, url, author, date, tags, tagMap }) {
     // convert date into Object
     const createdAt = new Date(date);
-
+    // map tags
     const convertedTag = (tags || []).map((id) => tagMap[id] || 'Unknown')
 
   return (
