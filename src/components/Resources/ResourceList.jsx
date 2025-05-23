@@ -80,7 +80,7 @@ function ResourceList() {
         ))}
       </div>
 
-      <div className={styles.loadMore}>
+      <div className={styles.load_more}>
         {visibleArticles < resources.length && (
           <button onClick={() => setVisibleArticles(prev => prev + 3)}>
             Load More
