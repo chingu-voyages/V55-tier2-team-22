@@ -1,11 +1,11 @@
 import React from 'react';
 import styles from './Resource.module.css';
 
-function ResourceCard({ title, url, author, date, tags, tagMap }) {
+function ResourceCard({ title, url, author, date, tags }) {
     // convert date into Object
     const createdAt = new Date(date);
-    // map tags
-    const convertedTag = (tags || []).map((id) => tagMap[id] || 'Unknown')
+    // // map tags
+    // const convertedTag = (tags || []).map((id) => tagMap[id] || 'Unknown')
 
   return (
     <div className={styles.resource_card}>
@@ -36,10 +36,10 @@ function ResourceCard({ title, url, author, date, tags, tagMap }) {
 
         </div>
 
-        <div className={styles.card_footer}>
+        <div>
             {convertedTag && convertedTag.length > 0 && (
                 <p>Tags:
-                    {convertedTag.map((tag, index) => (
+                    {tags.map((tag, index) => (
                         <span className={styles.tags} key={index}>{tag}</span>
                     ))}
                 </p>

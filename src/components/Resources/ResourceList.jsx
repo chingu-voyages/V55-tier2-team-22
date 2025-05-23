@@ -29,6 +29,8 @@ function ResourceList() {
         tagsData.forEach(tag => {
           tagMapObj[String(tag.id)] = tag.tag;
         });
+        // map tags
+        const convertedTag = (tags || []).map((id) => tagMap[id] || 'Unknown')
 
         setResources(resourcesData);
         setTagMap(tagMapObj); // set AFTER map is ready
@@ -74,8 +76,7 @@ function ResourceList() {
             url={resource.url}
             author={resource.author}
             date={resource.createdAt}
-            tags={resource.appliedTags}
-            tagMap={tagMap}
+            tags={convertedTag}
           />
         ))}
       </div>
