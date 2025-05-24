@@ -8,8 +8,7 @@ function ResourceList() {
   const [status, setStatus] = useState('loading'); //loading, failed, succeeded
   const [visibleArticles, setVisibleArticles] = useState(6);
 
-  useEffect(() => {
-    async function fetchData() {
+  async function fetchData() {
       setStatus('loading')
       try {
         const [resourcesRes, tagsRes] = await Promise.all([
@@ -41,6 +40,8 @@ function ResourceList() {
       }
     }
 
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -49,7 +50,7 @@ function ResourceList() {
       <div className={styles.retry}>
         <h2>Failed to load resources.</h2>
         <p>Please try again later.</p>
-        <button onClick={() => window.location.reload()}>Retry</button>
+        <button onClick={() => fetchData()}>Retry</button>
       </div>
     );
   }
