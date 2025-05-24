@@ -62,16 +62,16 @@ function ResourceList() {
         </div>
       );
     }
-
+console.log(tagMap)
 
   return (
     <>
       <div className={styles.resource_section}>
         {resources.slice(0, visibleArticles).map(resource => {
-          // Map tags for each resource
-          // const convertedTag = (resource.appliedTags || []).map(
-          //   (id) => tagMap[id] || 'Unknown'
-          // );
+          // Convert tag IDs to tag names
+          const convertedTag = (resource.appliedTags || []).map(
+            (id) => tagMap[id] || 'Unknown'
+          );
 
           return (
             <ResourceCard
@@ -80,12 +80,12 @@ function ResourceList() {
               url={resource.url}
               author={resource.author}
               date={resource.createdAt}
-              tags={resource.appliedTags}
-              tagMap={tagMap}
+              tags={convertedTag}
             />
           );
         })}
       </div>
+
 
 
       <div className={styles.load_more}>
