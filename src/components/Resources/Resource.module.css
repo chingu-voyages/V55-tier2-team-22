@@ -60,12 +60,18 @@
 }
 
 /* Card Footer */
+.tag_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1ch;
+}
 
-.tags {
-    background-color: #05DBF2;
+.tag {
+    display: inline-block;
+    background-color: #05dbf2;
     border-radius: 20px;
     padding: 5px 10px;
-    margin-left: 10px;
     font-weight: bold;
     font-size: 16px;
     font-variant: small-caps;
@@ -81,7 +87,6 @@
     display: flex;
     justify-content: center;
     margin: 20px;
-    height: 300px;
 }
 
 .spinner {

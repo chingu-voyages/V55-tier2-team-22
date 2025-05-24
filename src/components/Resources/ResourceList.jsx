@@ -29,8 +29,6 @@ function ResourceList() {
         tagsData.forEach(tag => {
           tagMapObj[String(tag.id)] = tag.tag;
         });
-        // map tags
-        const convertedTag = (tags || []).map((id) => tagMap[id] || 'Unknown')
 
         setResources(resourcesData);
         setTagMap(tagMapObj); // set AFTER map is ready
@@ -69,17 +67,26 @@ function ResourceList() {
   return (
     <>
       <div className={styles.resource_section}>
-        {resources.slice(0, visibleArticles).map((resource, id) => (
-          <ResourceCard
-            key={id}
-            title={resource.name}
-            url={resource.url}
-            author={resource.author}
-            date={resource.createdAt}
-            tags={convertedTag}
-          />
-        ))}
+        {resources.slice(0, visibleArticles).map(resource => {
+          // Map tags for each resource
+          // const convertedTag = (resource.appliedTags || []).map(
+          //   (id) => tagMap[id] || 'Unknown'
+          // );
+
+          return (
+            <ResourceCard
+              key={resource.id}
+              title={resource.name}
+              url={resource.url}
+              author={resource.author}
+              date={resource.createdAt}
+              tags={resource.appliedTags}
+              tagMap={tagMap}
+            />
+          );
+        })}
       </div>
+
 
       <div className={styles.load_more}>
         {visibleArticles < resources.length && (
