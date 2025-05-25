@@ -18,9 +18,12 @@ on:
       - reopened
   workflow_call:
 
+env:
+  WORKING_DIR: frontend
+
 defaults:
  run:
-  working-directory: frontend
+  working-directory: $WORKING_DIR
 
 jobs:
   unit-test:

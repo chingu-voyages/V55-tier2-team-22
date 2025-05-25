@@ -8,9 +8,12 @@ on:
       - dev
   workflow_call:
 
+env:
+  WORKING_DIR: frontend
+
 defaults:
  run:
-  working-directory: frontend
+  working-directory: $WORKING_DIR
 
 jobs:
   deploy:
@@ -39,3 +42,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           command: pages deploy
+          workingDirectory: $WORKING_DIR
