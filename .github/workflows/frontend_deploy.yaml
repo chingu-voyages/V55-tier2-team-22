@@ -8,6 +8,10 @@ on:
       - dev
   workflow_call:
 
+defaults:
+ run:
+  working-directory: frontend
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,13 +21,11 @@ jobs:
         with:
           sparse-checkout: 'frontend'
 
-      - run: cd frontend
-
-      - run: ls
-        
       - uses: actions/setup-node@v4
         with:
           node-version-file: frontend/package.json
+
+      - run: ls
 
       - name: Build app
         run: |
