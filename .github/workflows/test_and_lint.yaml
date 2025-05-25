@@ -64,7 +64,7 @@ jobs:
         retention-days: 30
 
   lint:
-    name: Code standards
+    name: Lint code
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
