@@ -1,4 +1,5 @@
 name: Test and lint code
+run-name: Test and lint code
 
 on:
   push:
