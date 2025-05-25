@@ -13,9 +13,14 @@ jobs:
     name: Build and deploy
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: 'frontend'
+
+      - run: cd frontend
+        
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: ${{ vars.NODE_VERSION }}
 
       - name: Build app
         run: |

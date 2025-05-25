@@ -25,6 +25,10 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: 'frontend'
+
+      - run: cd frontend
       
       - uses: actions/setup-node@v4
         with:
@@ -42,7 +46,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    
+      with:
+        sparse-checkout: 'frontend'
+
+    - run: cd frontend
+  
     - uses: actions/setup-node@v4
       with:
         node-version: ${{ vars.NODE_VERSION }}
@@ -69,6 +77,10 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: 'frontend'
+
+      - run: cd frontend
 
       - uses: actions/setup-node@v4
         with:
