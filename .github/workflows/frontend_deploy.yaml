@@ -13,7 +13,7 @@ env:
 
 defaults:
  run:
-  working-directory: $WORKING_DIR
+  working-directory: frontend
 
 jobs:
   deploy:
@@ -22,11 +22,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          sparse-checkout: 'frontend'
+          sparse-checkout: ${{ env.WORKING_DIR }}
 
       - uses: actions/setup-node@v4
         with:
-          node-version-file: frontend/package.json
+          node-version-file: ${{ env.WORKING_DIR }}/package.json
 
       - name: Build app
         run: |
@@ -42,4 +42,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           command: pages deploy
-          workingDirectory: $WORKING_DIR
+          workingDirectory: ${{ env.WORKING_DIR }}
