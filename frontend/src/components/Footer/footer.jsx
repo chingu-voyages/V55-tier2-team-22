@@ -43,7 +43,7 @@ const scrumMasters = [
 
 const Footer = () => {
   return (
-    <footer className='flex-col pt-5 lg:flex-row'>
+    <footer className='flex flex-col pt-5 lg:flex-row'>
         <div className='pb-8 lg:pb-0 lg:pr-12'>
             <FaGithub size={28} color='#05DBF2' className={styles.icon}/>
             <span><a href='https://github.com/chingu-voyages/V55-tier2-team-22'>GitHub Repository</a></span>
