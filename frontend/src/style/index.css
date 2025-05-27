@@ -1,0 +1,34 @@
+@import url("./reset.css");
+@import "tailwindcss";
+
+/* Global app styles would go here. */
+
+/* Colors */
+
+:root {
+  --primary-blue-dark: #0f5fa6; /* Blue1 */
+  --secondary-blue: #0a8cbf; /* Blue2 */
+  --accent-blue: #04b2d9; /* Blue3 */
+  --highlight-blue: #05dbf2; /* Blue4 */
+  --black: #0d0d0d; /* Black */
+  --white: white;
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  margin: 0 auto;
+  width: 80%;
+}
+
+a {
+  color: var(--accent-blue);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-blue-dark);
+  text-decoration: underline dotted var(--accent-blue);
+}
+

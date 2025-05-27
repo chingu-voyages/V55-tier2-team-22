@@ -1,0 +1,36 @@
+/* HEADER STYLES */
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+  margin: 0 auto;
+}
+
+.logo_name {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #05DBF2;
+  padding-bottom: .5em;
+  padding-top: .5em;
+  border-bottom: 1px solid white;
+  text-align: left;
+  width: 100%;
+}
+
+.header_mid {
+  text-align: center;
+  padding: 4em 0;
+}
+
+.header_mid h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0A8CBF;
+}
+
+.header_mid p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: white;
+}

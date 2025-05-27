@@ -1,0 +1,46 @@
+name: Deploy to CF Pages
+run-name: Deploy to CF Pages
+
+on:
+  workflow_run:
+    workflows: [Test and lint]
+    types: [completed]
+  workflow_call:
+
+env:
+  WORKING_DIR: frontend
+
+defaults:
+ run:
+  working-directory: frontend
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Build and deploy
+    # Only deploy if the test and lint succeeded 
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: ${{ env.WORKING_DIR }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ${{ env.WORKING_DIR }}/package.json
+
+      - name: Build app
+        run: |
+          npm ci
+          npm run build
+
+      # cloudflare/wrangler-action passes in the source branch automatically to `pages deploy`, so it's not 
+      # necessary to pass in a --branch flag to distinguish between Preview and Production deployments.
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy
+          workingDirectory: ${{ env.WORKING_DIR }}
