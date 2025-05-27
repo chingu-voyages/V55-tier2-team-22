@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ResourceCard from './ResourceCard';
 import styles from './Resource.module.css';
+import { getResources, getTags } from '@/util/getResourceData';
 
 function ResourceList() {
   const [resources, setResources] = useState([]);
@@ -11,17 +12,10 @@ function ResourceList() {
   async function fetchData() {
       setStatus('loading')
       try {
-        const [resourcesRes, tagsRes] = await Promise.all([
-          fetch('https://seshatbe.up.railway.app/resources'),
-          fetch('https://seshatbe.up.railway.app/tags'),
+        const [resourcesData, tagsData] = await Promise.all([
+          getResources(),
+          getTags(),
         ]);
-
-        if (!resourcesRes.ok || !tagsRes.ok) {
-        throw new Error('Fetch failed');
-      }
-
-        const resourcesData = await resourcesRes.json();
-        const tagsData = await tagsRes.json();
 
         // Convert tags into a map using string keys
         const tagMapObj = {};
@@ -56,14 +50,13 @@ function ResourceList() {
   }
 
   if (status === 'loading' || !tagMap) {
-      return (
-        <div className={styles.loading}>
-          <h2>Fetching Data...</h2>
-          <div className={styles.spinner}></div>
-        </div>
-      );
-    }
-console.log(tagMap)
+    return (
+      <div className={styles.loading}>
+        <h2>Fetching Data...</h2>
+        <div className={styles.spinner}></div>
+      </div>
+    );
+  }
 
   return (
     <>
