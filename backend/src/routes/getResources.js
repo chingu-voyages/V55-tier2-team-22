@@ -11,13 +11,15 @@ router.get("/", async (req, res) => {
   // Step 1: Check cache first
   const cached = cache.get(cacheKey);
   if (cached) {
-    console.log("Returning cached data");
+    console.log("Returning cached data", cacheKey);
     return res.json(cached);
   }
 
   try {
     // Step 2: If not cached, fetch data from the slow external server
-    const response = await axios.get("https://seshatbe.up.railway.app/resources");
+    const response = await axios.get(
+      "https://seshatbe.up.railway.app/resources"
+    );
 
     // Step 3: Store response data in cache
     cache.set(cacheKey, response.data);
