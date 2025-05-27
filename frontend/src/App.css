@@ -1,0 +1,17 @@
+/* This is CSS specific to the App.jsx route. Global app styles should be added to index.css */
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 20px auto;
+  min-width: 80%;
+  min-height: 100vh;
+}
+
+
+
