@@ -7,10 +7,10 @@ const cache = new NodeCache({
   deleteOnExpire: false,
 });
 
-const cacheKey = `proxy:${req.originalUrl}`; // Unique cache key per request
+const cacheKey = "/api/data"; // Unique cache key per request
 
 // Preload cache on server start
-export const preloadCahe = async () => {
+export const preloadCache = async () => {
   try {
     const response = await axios.get(
       "https://seshatbe.up.railway.app/resources"

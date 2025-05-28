@@ -1,5 +1,5 @@
 import express from "express";
-import { getCachedData } from "../cache/resourceCache.js";
+import { getCachedData } from "../../cache/resourceCache.js";
 
 const router = express.Router();
 
