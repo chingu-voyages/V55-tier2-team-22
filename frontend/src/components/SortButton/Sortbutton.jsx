@@ -19,6 +19,10 @@ function SortButton() {
 
             <div className={styles.sortOptions}>
                 <button className={styles.toggleButton}>Title</button>
+
+
+
+                
                 <button className={styles.toggleButton}>Date</button>
                 <p className={styles.toggleBorder}></p>
                 <button className={styles.toggleButton}>Asc</button>
