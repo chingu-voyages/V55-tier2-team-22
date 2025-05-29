@@ -1,19 +1,7 @@
 import { useState } from 'react';
 import styles from './SortButton.module.css';
 
-function SortButton({onSortChange}) {
-    const [sortBy, setSortBy] = useState('title');
-    const [sortOrder, setSortOrder] = useState('asc');
-
-    const handleSortChange = (field) => {
-        setSortBy(field);
-        onSortChange(field, sortOrder);
-    };
-
-    const handleOrderChange = (order) => {
-        setSortOrder(order);
-        onSortChange(sortBy, order);
-    };
+function SortButton() {
 
 
   return (
@@ -23,6 +11,15 @@ function SortButton({onSortChange}) {
                 Sort by
             
             </button>
+            <div className={styles.sortOptions}>
+                <button className={styles.toggleButton}>Title</button>
+                <button className={styles.toggleButton}>Date</button>
+                <button className={styles.toggleButton}>Asc</button>
+                <button className={styles.toggleButton}>Desc</button>
+
+
+                
+            </div>
         </div>
     </>
   );
