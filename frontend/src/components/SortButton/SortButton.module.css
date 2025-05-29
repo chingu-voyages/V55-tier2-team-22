@@ -28,3 +28,8 @@
     font-style: italic;
     background-color: transparent;
 }
+
+.toggleBorder {
+    border: .5px solid black;
+    margin: 0em 0.2em;
+}
