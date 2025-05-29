@@ -1,0 +1,10 @@
+.sort_button {
+    display: flex;
+}
+
+.container{
+    margin-top: 4em;
+    border-bottom: 1px solid var(--highlight-blue);
+    padding-bottom: 1em;
+}
+
