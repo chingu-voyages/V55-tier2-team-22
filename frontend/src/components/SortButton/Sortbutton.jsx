@@ -2,32 +2,50 @@ import { useState } from 'react';
 import styles from './SortButton.module.css';
 
 function SortButton() {
-    const [sortBy, setSortBy] = useState('title');
-    const [sortOrder, setSortOrder] = useState('asc');
-
-    const handleSort = (field, order) => {
-        setSortBy(field);
-        setSortOrder(order);
-        onSortChange(field, order); // call parent with new values
-    };
+    const [showOptions, setShowOptions] = useState(false);
 
   return (
     <>
         <div className={styles.container}> 
 
-            <button className={styles.sort_button}>Sort by</button>
+            <button 
+                className={styles.sort_button}
+                onClick={() => setShowOptions(prev => !prev)}
+            >
+                Sort by
+            </button>
 
-            <div className={styles.sortOptions}>
-                <button className={styles.toggleButton}>Title</button>
+           {showOptions && (
+        <div className={styles.sortOptions}>
+          <button
+            className={styles.toggleButton}
+            onClick={() => handleSort('title', sortOrder)}
+          >
+            Title
+          </button>
+          <button
+            className={styles.toggleButton}
+            onClick={() => handleSort('date', sortOrder)}
+          >
+            Date
+          </button>
 
+          <p className={styles.toggleBorder}></p>
 
-
-                
-                <button className={styles.toggleButton}>Date</button>
-                <p className={styles.toggleBorder}></p>
-                <button className={styles.toggleButton}>Asc</button>
-                <button className={styles.toggleButton}>Desc</button>
-            </div>
+          <button
+            className={styles.toggleButton}
+            onClick={() => handleSort(sortBy, 'asc')}
+          >
+            Asc
+          </button>
+          <button
+            className={styles.toggleButton}
+            onClick={() => handleSort(sortBy, 'desc')}
+          >
+            Desc
+          </button>
+        </div>
+      )}
         </div>
     </>
   );
