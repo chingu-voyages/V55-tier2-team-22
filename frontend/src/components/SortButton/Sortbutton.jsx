@@ -1,31 +1,41 @@
 import { useState } from 'react';
 import styles from './SortButton.module.css';
 
-function SortButton() {
-    const [showOptions, setShowOptions] = useState(false);
+function SortButton({ onSortChange }) {
+  const [showOptions, setShowOptions] = useState(false);
+  const [sortBy, setSortBy] = useState('title');
+  const [sortOrder, setSortOrder] = useState('asc');
+
+  const handleSortField = (field) => {
+    setSortBy(field);
+    onSortChange(field, sortOrder);
+  };
+
+  const handleSortOrder = (order) => {
+    setSortOrder(order);
+    onSortChange(sortBy, order);
+  };
 
   return (
-    <>
-        <div className={styles.container}> 
+    <div className={styles.container}>
+      <button
+        className={styles.sort_button}
+        onClick={() => setShowOptions(prev => !prev)}
+      >
+        Sort by
+      </button>
 
-            <button 
-                className={styles.sort_button}
-                onClick={() => setShowOptions(prev => !prev)}
-            >
-                Sort by
-            </button>
-
-           {showOptions && (
+      {showOptions && (
         <div className={styles.sortOptions}>
           <button
-            className={styles.toggleButton}
-            onClick={() => handleSort('title', sortOrder)}
+            className={`${styles.toggleButton} ${sortBy === 'title' ? styles.active : ''}`}
+            onClick={() => handleSortField('title')}
           >
             Title
           </button>
           <button
-            className={styles.toggleButton}
-            onClick={() => handleSort('date', sortOrder)}
+            className={`${styles.toggleButton} ${sortBy === 'date' ? styles.active : ''}`}
+            onClick={() => handleSortField('date')}
           >
             Date
           </button>
@@ -33,21 +43,20 @@ function SortButton() {
           <p className={styles.toggleBorder}></p>
 
           <button
-            className={styles.toggleButton}
-            onClick={() => handleSort(sortBy, 'asc')}
+            className={`${styles.toggleButton} ${sortOrder === 'asc' ? styles.active : ''}`}
+            onClick={() => handleSortOrder('asc')}
           >
             Asc
           </button>
           <button
-            className={styles.toggleButton}
-            onClick={() => handleSort(sortBy, 'desc')}
+            className={`${styles.toggleButton} ${sortOrder === 'desc' ? styles.active : ''}`}
+            onClick={() => handleSortOrder('desc')}
           >
             Desc
           </button>
         </div>
       )}
-        </div>
-    </>
+    </div>
   );
 }
 
