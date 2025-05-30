@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ResourceCard from './ResourceCard';
 import styles from './Resource.module.css';
 import { getResources, getTags } from '@/util/getResourceData';
-import SortButton from './SortButton';
 
 
 function ResourceList() {
@@ -35,6 +34,8 @@ function ResourceList() {
         setStatus('failed');
       }
     }
+  
+
 
 
   useEffect(() => {
