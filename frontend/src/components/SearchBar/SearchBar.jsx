@@ -4,15 +4,15 @@ import { Search } from "lucide-react";
 function SearchBar() {
   return (
     <div className="max-w-screen">
-      <div className="relative mx-auto w-max flex justify-between gap-x-5 items-center">
-        <div className=" flex items-center">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Search className=" left-5 top-5 h-5 w-5 ml-3 text-gray-400" />
+      <div className="relative mx-auto w-max grid grid-col-1 sm:flex justify-between gap-x-5 items-center">
+        <div className="flex items-center">
+          <div className="absolute inset-y-0 left-0 bottom-24 sm:bottom-0 pl-4 flex items-center pointer-events-none">
+            <Search className="md:left-5 md:top-5 md:h-5 md:w-5 md:ml-3 text-gray-400" />
           </div>
           <input
             type="text"
             placeholder="Search..."
-            className="outline-2 lg:w-xl outline-cyan-400 rounded-2xl py-2 px-4 ml-5 pl-8"
+            className="outline-2 lg:w-xl outline-cyan-400 rounded-2xl py-2 px-4 md:ml-5 pl-8"
           />
         </div>
 
