@@ -1,7 +1,7 @@
 import styles from './Header.module.css';
 
 
-function Header() {
+function Header({ total }) {
   const currentDate = new Date().toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -16,7 +16,7 @@ function Header() {
         </div>
         <div className={`${styles.container} ${styles.header_mid}`}>
             <h1>Welcome to AppName </h1>
-            <p>A collection of over 200 resources for Developers and Designers, all in one place</p>
+            <p>A collection of <b>{total}</b> resources for Developers and Designers, all in one place</p>
         </div>
     </header>
   );
