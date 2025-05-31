@@ -34,6 +34,9 @@
   font-weight: 400;
   color: white;
 }
+.header_mid b {
+  text-decoration: underline;
+}
 
 .header_date {
   font-size: .7rem;

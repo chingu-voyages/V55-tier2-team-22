@@ -1,3 +1,4 @@
+import './App.css';
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/footer";
 import ResourceList from "./components/Resources/ResourceList";
@@ -94,7 +95,7 @@ function App() {
   return (
     <>
       {/* Header of the App */}
-      <Header />
+      <Header total={resources.length}/>
 
       {/* Search Bar */}
       <SearchBar />
