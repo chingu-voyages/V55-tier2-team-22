@@ -1,76 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import ResourceCard from './ResourceCard';
 import styles from './Resource.module.css';
-import { getResources, getTags } from '@/util/getResourceData';
 
 function ResourceList({ displayRange , selectedTags}) {
-  const [resources, setResources] = useState([]);
-  const [tagMap, setTagMap] = useState(null); // null until loaded
-  const [status, setStatus] = useState('loading'); //loading, failed, succeeded
-
-  async function fetchData() {
-      setStatus('loading')
-      try {
-        const [resourcesData, tagsData] = await Promise.all([
-          getResources(),
-          getTags(),
-        ]);
-
-        // Convert tags into a map using string keys
-        const tagMapObj = {};
-        tagsData.forEach(tag => {
-          tagMapObj[String(tag.id)] = tag.tag;
-        });
-
-        setResources(resourcesData);
-        setTagMap(tagMapObj); // set AFTER map is ready
-        setStatus('succeeded');
-      }
-
-      catch (error) {
-        console.error('Failed to fetch resources or tags:', error);
-        setStatus('failed');
-      }
-    }
-
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  if (status === 'failed') {
-    return (
-      <div className={styles.retry}>
-        <h2>Failed to load resources.</h2>
-        <p>Please try again later.</p>
-        <button onClick={() => fetchData()}>Retry</button>
-      </div>
-    );
-  }
-
-  if (status === 'loading' || !tagMap) {
-    return (
-      <div className={styles.loading}>
-        <h2>Fetching Data...</h2>
-        <div className={styles.spinner}></div>
-      </div>
-    );
-  }
-
-  // Filter resources based on selectedTags
-  const filteredResources = selectedTags.length === 0
-    ? resources
-    : resources.filter(resource => {
-        const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
-        // Check if resource has any tag from selectedTags
-        return selectedTags.some(tag => resourceTagNames.includes(tag));
-      });
-
-
   return (
     <>
       <div className={styles.resource_section}>
-        {filteredResources.slice(displayRange.start, displayRange.end).map(resource => {
+        {selectedTags.slice(displayRange.start, displayRange.end).map(resource => {
           // Convert tag IDs to tag names
           const convertedTag = (resource.appliedTags || []).map(
             (id) => tagMap[id] || 'Unknown'

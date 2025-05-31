@@ -4,32 +4,83 @@ import ResourceList from "./components/Resources/ResourceList";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import { useEffect, useState } from "react";
 import PaginationBar from "./components/Pagination/PaginationBar";
-import { getResources } from "./util/getResourceData";
 import { computeRangeFromPageIndex } from "./util/pagination";
 import TagDropdown from './components/SearchBar/TagDropdown';
+import { getResources, getTags } from '@/util/getResourceData';
 
 const initialPageIndex = 0;
 const pageSize = 9;
 
 function App() {
-  // for pagination
   const [resources, setResources] = useState([]);
+  const [tagMap, setTagMap] = useState(null); // null until loaded
+  const [status, setStatus] = useState('loading'); //loading, failed, succeeded
+  // for pagination
   const [itemDisplayRange, setItemDisplayRange] = useState(computeRangeFromPageIndex(initialPageIndex, pageSize));
   // for searching by Tags
   const [ selectedTags, setSelectedTags ] = useState([])
 
+  async function fetchData() {
+      setStatus('loading')
+      try {
+        const [resourcesData, tagsData] = await Promise.all([
+          getResources(),
+          getTags(),
+        ]);
+
+        // Convert tags into a map using string keys
+        const tagMapObj = {};
+        tagsData.forEach(tag => {
+          tagMapObj[String(tag.id)] = tag.tag;
+        });
+
+        setResources(resourcesData);
+        setTagMap(tagMapObj); // set AFTER map is ready
+        setStatus('succeeded');
+      }
+
+      catch (error) {
+        console.error('Failed to fetch resources or tags:', error);
+        setStatus('failed');
+      }
+    }
+
+    // fetch data from remote API - call function
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (status === 'failed') {
+    return (
+      <div className="retry">
+        <h2>Failed to load resources.</h2>
+        <p>Please try again later.</p>
+        <button onClick={() => fetchData()}>Retry</button>
+      </div>
+    );
+  }
+
+  if (status === 'loading' || !tagMap) {
+    return (
+      <div className="loading">
+        <h2>Fetching Data...</h2>
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+
+  // Filter resources based on selectedTags
+  const filteredResources = selectedTags.length === 0
+    ? resources
+    : resources.filter(resource => {
+        const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
+        // Check if resource has any tag from selectedTags
+          return selectedTags.some(tag => resourceTagNames.includes(tag));
+        });
+
   function onPageIndexChange(index) {
     setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
   }
-
-  useEffect(() => {
-    async function initResources() {
-      const rec = await getResources();
-      setResources(rec);
-    }
-
-    initResources();
-  }, []);
 
   return (
     <>
@@ -49,7 +100,7 @@ function App() {
       <PaginationBar
         firstItemIndex={itemDisplayRange.start}
         pageSize={pageSize}
-        totalItems={resources.length}
+        totalItems={filteredResources.length}
         maxVisiblePageButtons={5}
         onChangePage={onPageIndexChange}
       ></PaginationBar>
