@@ -50,6 +50,28 @@ function App() {
     fetchData();
   }, []);
 
+    // Filter resources based on selectedTags
+  const filteredResources = selectedTags.length === 0
+    ? resources
+    : resources.filter(resource => {
+        const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
+        // Check if resource has any tag from selectedTags
+          return selectedTags.some(tag => resourceTagNames.includes(tag));
+        });
+
+  // Paginate
+  const visibleResources = filteredResources.slice(itemDisplayRange.start, itemDisplayRange.end);
+
+  function onPageIndexChange(index) {
+    setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
+  }
+
+  // reset pagination numbers
+  useEffect(() => {
+    setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
+  }, [selectedTags]);
+
+  // if remote server fails
   if (status === 'failed') {
     return (
       <div className="retry">
@@ -67,19 +89,6 @@ function App() {
         <div className="spinner"></div>
       </div>
     );
-  }
-
-  // Filter resources based on selectedTags
-  const filteredResources = selectedTags.length === 0
-    ? resources
-    : resources.filter(resource => {
-        const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
-        // Check if resource has any tag from selectedTags
-          return selectedTags.some(tag => resourceTagNames.includes(tag));
-        });
-
-  function onPageIndexChange(index) {
-    setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
   }
 
   return (
