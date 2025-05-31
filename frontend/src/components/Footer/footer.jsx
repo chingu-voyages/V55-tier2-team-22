@@ -59,8 +59,8 @@ const Footer = () => {
                         <div key={index} className='flex flex-col justify-evenly py-2'>
                             <p>{member.name}</p>
                             <div className='flex justify-center item-center'>
-                                <a href={member.github} className='pr-2'><FaGithub color='#05DBF2'size={20} /></a>
-                                <a href={member.linkedIn}><FaLinkedin color='#05DBF2' size={20}/></a>
+                                <a href={member.github} className='pr-2'><FaGithub size={20} /></a>
+                                <a href={member.linkedIn}><FaLinkedin size={20}/></a>
                             </div>
 
                         </div>
@@ -75,8 +75,10 @@ const Footer = () => {
                     return (
                         <div key={index} className='flex flex-col justify-evenly py-2'>
                             <p className='px-8'>{member.name}</p>
-                            <div className='flex justify-center item-center'>
-                                <a href={member.linkedIn}><FaLinkedin color='#05DBF2' size={20}/></a>
+                            <div className='flex justify-center items-center'>
+                                <a href={member.linkedIn}>
+                                    <FaLinkedin size={20}/>
+                                </a>
                             </div>
                         </div>
                         )
