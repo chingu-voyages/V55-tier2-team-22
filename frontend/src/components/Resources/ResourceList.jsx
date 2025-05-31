@@ -1,11 +1,11 @@
 import ResourceCard from './ResourceCard';
 import styles from './Resource.module.css';
 
-function ResourceList({ displayRange , selectedTags}) {
+function ResourceList({ resourceList , tagMap}) {
   return (
     <>
       <div className={styles.resource_section}>
-        {selectedTags.slice(displayRange.start, displayRange.end).map(resource => {
+        {resourceList.map(resource => {
           // Convert tag IDs to tag names
           const convertedTag = (resource.appliedTags || []).map(
             (id) => tagMap[id] || 'Unknown'

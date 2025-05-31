@@ -94,7 +94,7 @@ function App() {
       <TagDropdown onTagSelect={setSelectedTags}/>
 
       {/* Show the resources fetched from the API */}
-      <ResourceList displayRange={itemDisplayRange} selectedTags={selectedTags}/>
+      <ResourceList resourceList={visibleResources} tagMap={tagMap} />
 
       {/* Pagination */}
       <PaginationBar
