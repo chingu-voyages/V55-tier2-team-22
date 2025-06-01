@@ -35,7 +35,9 @@
 }
 
 .active {
-  background-color: #333;
-  color: white;
+  background-color:aqua;
+  border: 1px solid var(--highlight-blue);
+  margin: 0.1rem;
+  color: black;
   border-color: #888;
 }
