@@ -1,20 +1,22 @@
 import "./App.css";
-import Header from './components/Header/Header.jsx';
+import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/footer";
 import ResourceList from "./components/Resources/ResourceList";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
+import SearchPage from "./components/SearchBar/SearchPage";
 
 function App() {
   return (
     <>
       {/* Header of the App */}
-      <Header/>
+      <Header />
       {/* Search Bar */}
-      <SearchBar/>
+      {/* <SearchBar /> */}
+      <SearchPage />
       {/* Show the resources fetched from the API */}
-      <ResourceList/>
+      {/* <ResourceList /> */}
       {/* Footer of the App */}
-      <Footer/>
+      <Footer />
     </>
   );
 }
