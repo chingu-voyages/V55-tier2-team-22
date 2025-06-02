@@ -1,15 +1,13 @@
-import ResourceCard from './ResourceCard';
-import styles from './Resource.module.css';
+import ResourceCard from "./ResourceCard";
+import styles from "./Resource.module.css";
 
-function ResourceList({ resourceList , tagMap}) {
+function ResourceList({ resourceList, tagMap }) {
   return (
     <>
       <div className={styles.resource_section}>
-        {resourceList.map(resource => {
+        {resourceList.map((resource) => {
           // Convert tag IDs to tag names
-          const convertedTag = (resource.appliedTags || []).map(
-            (id) => tagMap[id] || 'Unknown'
-          );
+          const convertedTag = (resource.appliedTags || []).map((id) => tagMap[id] || "Unknown");
 
           return (
             <ResourceCard

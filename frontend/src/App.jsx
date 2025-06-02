@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/footer";
 import ResourceList from "./components/Resources/ResourceList";
@@ -6,8 +6,8 @@ import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import { useEffect, useState } from "react";
 import PaginationBar from "./components/Pagination/PaginationBar";
 import { computeRangeFromPageIndex } from "./util/pagination";
-import TagDropdown from './components/SearchBar/TagDropdown';
-import { getResources, getTags } from '@/util/getResourceData';
+import TagDropdown from "./components/SearchBar/TagDropdown";
+import { getResources, getTags } from "@/util/getResourceData";
 
 const initialPageIndex = 0;
 const pageSize = 9;
@@ -15,49 +15,47 @@ const pageSize = 9;
 function App() {
   const [resources, setResources] = useState([]);
   const [tagMap, setTagMap] = useState(null); // null until loaded
-  const [status, setStatus] = useState('loading'); //loading, failed, succeeded
+  const [status, setStatus] = useState("loading"); //loading, failed, succeeded
   // for pagination
-  const [itemDisplayRange, setItemDisplayRange] = useState(computeRangeFromPageIndex(initialPageIndex, pageSize));
+  const [itemDisplayRange, setItemDisplayRange] = useState(
+    computeRangeFromPageIndex(initialPageIndex, pageSize)
+  );
   // for searching by Tags
-  const [ selectedTags, setSelectedTags ] = useState([])
+  const [selectedTags, setSelectedTags] = useState([]);
 
   async function fetchData() {
-      setStatus('loading')
-      try {
-        const [resourcesData, tagsData] = await Promise.all([
-          getResources(),
-          getTags(),
-        ]);
+    setStatus("loading");
+    try {
+      const [resourcesData, tagsData] = await Promise.all([getResources(), getTags()]);
 
-        // Convert tags into a map using string keys
-        const tagMapObj = {};
-        tagsData.forEach(tag => {
-          tagMapObj[String(tag.id)] = tag.tag;
-        });
+      // Convert tags into a map using string keys
+      const tagMapObj = {};
+      tagsData.forEach((tag) => {
+        tagMapObj[String(tag.id)] = tag.tag;
+      });
 
-        setResources(resourcesData);
-        setTagMap(tagMapObj); // set AFTER map is ready
-        setStatus('succeeded');
-      }
-
-      catch (error) {
-        console.error('Failed to fetch resources or tags:', error);
-        setStatus('failed');
-      }
+      setResources(resourcesData);
+      setTagMap(tagMapObj); // set AFTER map is ready
+      setStatus("succeeded");
+    } catch (error) {
+      console.error("Failed to fetch resources or tags:", error);
+      setStatus("failed");
     }
+  }
 
-    // fetch data from remote API - call function
+  // fetch data from remote API - call function
   useEffect(() => {
     fetchData();
   }, []);
 
-    // Filter resources based on selectedTags
-  const filteredResources = selectedTags.length === 0
-    ? resources
-    : resources.filter(resource => {
-        const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
-        // Check if resource has any tag from selectedTags
-          return selectedTags.some(tag => resourceTagNames.includes(tag));
+  // Filter resources based on selectedTags
+  const filteredResources =
+    selectedTags.length === 0
+      ? resources
+      : resources.filter((resource) => {
+          const resourceTagNames = (resource.appliedTags || []).map((id) => tagMap[id]);
+          // Check if resource has any tag from selectedTags
+          return selectedTags.some((tag) => resourceTagNames.includes(tag));
         });
 
   // Paginate
@@ -73,7 +71,7 @@ function App() {
   }, [selectedTags]);
 
   // if remote server fails
-  if (status === 'failed') {
+  if (status === "failed") {
     return (
       <div className="retry">
         <h2>Failed to load resources.</h2>
@@ -83,7 +81,7 @@ function App() {
     );
   }
 
-  if (status === 'loading' || !tagMap) {
+  if (status === "loading" || !tagMap) {
     return (
       <div className="loading">
         <h2>Fetching Data...</h2>
@@ -95,13 +93,13 @@ function App() {
   return (
     <>
       {/* Header of the App */}
-      <Header total={resources.length}/>
+      <Header total={resources.length} />
 
       {/* Search Bar */}
       <SearchBar />
 
       {/* Tags Dropdown Selection */}
-      <TagDropdown onTagSelect={setSelectedTags}/>
+      <TagDropdown onTagSelect={setSelectedTags} />
 
       {/* Show the resources fetched from the API */}
       <ResourceList resourceList={visibleResources} tagMap={tagMap} />
