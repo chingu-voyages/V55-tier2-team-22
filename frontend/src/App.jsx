@@ -10,10 +10,8 @@ function App() {
       {/* Header of the App */}
       <Header />
       {/* Search Bar */}
-      {/* <SearchBar /> */}
       <SearchPage />
       {/* Show the resources fetched from the API */}
-      {/* <ResourceList /> */}
       {/* Footer of the App */}
       <Footer />
     </>
