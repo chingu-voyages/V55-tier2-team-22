@@ -53,10 +53,10 @@ function App() {
     selectedTags.length === 0
       ? resources
       : resources.filter((resource) => {
-          const resourceTagNames = (resource.appliedTags || []).map((id) => tagMap[id]);
-          // Check if resource has any tag from selectedTags
-          return selectedTags.some((tag) => resourceTagNames.includes(tag));
-        });
+        const resourceTagNames = (resource.appliedTags || []).map((id) => tagMap[id]);
+        // Check if resource has any tag from selectedTags
+        return selectedTags.some((tag) => resourceTagNames.includes(tag));
+      });
 
   // Paginate
   const visibleResources = filteredResources.slice(itemDisplayRange.start, itemDisplayRange.end);
