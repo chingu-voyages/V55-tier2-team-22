@@ -65,7 +65,7 @@ function App() {
     setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
   }
 
-  // reset pagination numbers
+  // Reset to first pagination page when tag filter changes
   useEffect(() => {
     setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
   }, [selectedTags]);
