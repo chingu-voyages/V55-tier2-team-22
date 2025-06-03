@@ -19,46 +19,46 @@ function App() {
   // for pagination
   const [itemDisplayRange, setItemDisplayRange] = useState(computeRangeFromPageIndex(initialPageIndex, pageSize));
   // for searching by Tags
-  const [ selectedTags, setSelectedTags ] = useState([])
+  const [selectedTags, setSelectedTags] = useState([])
 
   async function fetchData() {
-      setStatus('loading')
-      try {
-        const [resourcesData, tagsData] = await Promise.all([
-          getResources(),
-          getTags(),
-        ]);
+    setStatus('loading')
+    try {
+      const [resourcesData, tagsData] = await Promise.all([
+        getResources(),
+        getTags(),
+      ]);
 
-        // Convert tags into a map using string keys
-        const tagMapObj = {};
-        tagsData.forEach(tag => {
-          tagMapObj[String(tag.id)] = tag.tag;
-        });
+      // Convert tags into a map using string keys
+      const tagMapObj = {};
+      tagsData.forEach(tag => {
+        tagMapObj[String(tag.id)] = tag.tag;
+      });
 
-        setResources(resourcesData);
-        setTagMap(tagMapObj); // set AFTER map is ready
-        setStatus('succeeded');
-      }
-
-      catch (error) {
-        console.error('Failed to fetch resources or tags:', error);
-        setStatus('failed');
-      }
+      setResources(resourcesData);
+      setTagMap(tagMapObj); // set AFTER map is ready
+      setStatus('succeeded');
     }
 
-    // fetch data from remote API - call function
+    catch (error) {
+      console.error('Failed to fetch resources or tags:', error);
+      setStatus('failed');
+    }
+  }
+
+  // fetch data from remote API - call function
   useEffect(() => {
     fetchData();
   }, []);
 
-    // Filter resources based on selectedTags
+  // Filter resources based on selectedTags
   const filteredResources = selectedTags.length === 0
     ? resources
     : resources.filter(resource => {
-        const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
-        // Check if resource has any tag from selectedTags
-          return selectedTags.some(tag => resourceTagNames.includes(tag));
-        });
+      const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
+      // Check if resource has any tag from selectedTags
+      return selectedTags.some(tag => resourceTagNames.includes(tag));
+    });
 
   // Paginate
   const visibleResources = filteredResources.slice(itemDisplayRange.start, itemDisplayRange.end);
@@ -90,17 +90,17 @@ function App() {
   return (
     <>
       {/* Header of the App */}
-      <Header total={resources.length}/>
+      <Header total={resources.length} />
 
       {/* Search Bar */}
       <SearchBar />
 
       {/* Tags Dropdown Selection */}
       <TagDropdown onTagSelect={(tags) => {
-          setSelectedTags(tags);
-          // update pagination based on tags
-          setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
-        }} />
+        setSelectedTags(tags);
+        // update pagination based on tags
+        setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
+      }} />
       {/* Show the resources fetched from the API */}
       <ResourceList resourceList={visibleResources} tagMap={tagMap} />
 
