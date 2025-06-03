@@ -67,11 +67,6 @@ function App() {
     setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
   }
 
-  // reset pagination numbers
-  useEffect(() => {
-    setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
-  }, [selectedTags]);
-
   // if remote server fails
   if (status === 'failed') {
     return (
@@ -101,8 +96,11 @@ function App() {
       <SearchBar />
 
       {/* Tags Dropdown Selection */}
-      <TagDropdown onTagSelect={setSelectedTags}/>
-
+      <TagDropdown onTagSelect={(tags) => {
+          setSelectedTags(tags);
+          // update pagination based on tags
+          setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
+        }} />
       {/* Show the resources fetched from the API */}
       <ResourceList resourceList={visibleResources} tagMap={tagMap} />
 
