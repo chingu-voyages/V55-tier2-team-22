@@ -1,3 +1,4 @@
+
 // import styles from "./SearchBar.module.css";
 import { Search } from "lucide-react";
 import SearchPage from "./SearchPage";
@@ -36,6 +37,7 @@ function SearchBar({
           Search
         </div>
       </div>
+
     </div>
   );
 }

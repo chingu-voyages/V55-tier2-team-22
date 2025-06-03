@@ -3,14 +3,16 @@ import ResourceCard from "./ResourceCard";
 import styles from "./Resource.module.css";
 import { getResources, getTags } from "@/util/getResourceData";
 
-function ResourceList() {
+function ResourceList({ displayRange, selectedTags }) {
   const [resources, setResources] = useState([]);
   const [tagMap, setTagMap] = useState(null); // null until loaded
+
   const [status, setStatus] = useState("loading"); //loading, failed, succeeded
   const [visibleArticles, setVisibleArticles] = useState(6);
 
   async function fetchData() {
     setStatus("loading");
+
     try {
       const [resourcesData, tagsData] = await Promise.all([
         getResources(),
@@ -19,18 +21,22 @@ function ResourceList() {
 
       // Convert tags into a map using string keys
       const tagMapObj = {};
+
       tagsData.forEach((tag) => {
+
         tagMapObj[String(tag.id)] = tag.tag;
       });
 
       setResources(resourcesData);
       setTagMap(tagMapObj); // set AFTER map is ready
+
       setStatus("succeeded");
     } catch (error) {
       console.error("Failed to fetch resources or tags:", error);
       setStatus("failed");
     }
   }
+
 
   useEffect(() => {
     fetchData();
@@ -55,10 +61,22 @@ function ResourceList() {
     );
   }
 
+  // Filter resources based on selectedTags
+  const filteredResources = selectedTags.length === 0
+    ? resources
+    : resources.filter(resource => {
+      const resourceTagNames = (resource.appliedTags || []).map(id => tagMap[id]);
+      // Check if resource has any tag from selectedTags
+      return selectedTags.some(tag => resourceTagNames.includes(tag));
+    });
+
+
   return (
     <>
+
       <div className={styles.resource_section}>
         {resources.slice(0, visibleArticles).map((resource) => {
+
           // Convert tag IDs to tag names
           const convertedTag = (resource.appliedTags || []).map(
             (id) => tagMap[id] || "Unknown"
@@ -77,6 +95,7 @@ function ResourceList() {
         })}
       </div>
 
+
       <div className={styles.load_more}>
         {visibleArticles < resources.length && (
           <button onClick={() => setVisibleArticles((prev) => prev + 3)}>
@@ -84,6 +103,7 @@ function ResourceList() {
           </button>
         )}
       </div>
+
     </>
   );
 }

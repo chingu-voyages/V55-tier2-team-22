@@ -1,87 +1,10 @@
-.resource_section {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    flex-wrap: wrap;
-    margin: 3rem 1rem
-}
-
-/* Single card */
-
-.resource_card {
-   flex: 30%;
-   width: 30%;
-   min-width: 15em;
-   flex-grow: 1;
-   min-height: 19em;
-   margin: 10px;
-   padding: 20px;
-   display: flex;
-   flex-direction: column;
-   justify-content: space-between;
-   background-color: white;
-   border-radius: 20px;
-   color: #0D0D0D;
-}
-
-/* Card header */
-.card_header {
-    border-bottom: 1.5px solid #0A8CBF;
-    min-height: 100px;
-    display: flex;
-    align-items: center;
-}
-
-.card_header  h3 a {
-    color: #0D0D0D;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.resource_card  h3 a:hover {
-    color: #0A8CBF;
-    text-decoration: none;
-}
-
-/* Card body */
-
-.card_body p {
-    margin: 10px 0;
-}
-
-.author{
-    font-variant: small-caps;
-    font-size: 22px;
-}
-
-.date {
-    font-style: italic;
-}
-
-/* Card Footer */
-.tag_list {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 1ch;
-}
-
-.tag {
-    display: inline-block;
-    background-color: #05dbf2;
-    border-radius: 20px;
-    padding: 5px 10px;
-    font-weight: bold;
-    font-size: 16px;
-    font-variant: small-caps;
-}
-
 /* Spinner while waiting to load */
 .load_more {
     display: flex;
     justify-content: center;
     margin-bottom: 30px;
 }
+
 .loading {
     display: flex;
     justify-content: center;
@@ -100,8 +23,13 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Failed to load resources */

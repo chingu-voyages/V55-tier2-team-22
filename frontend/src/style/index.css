@@ -22,34 +22,28 @@ body {
 }
 
 button {
-  color: var(--color-gray-950);
-  background-color: var(--color-gray-50);
-  
+  background-color: var(--primary-blue-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 20px;
+  padding: 0.4em 1.3em;
+  font-variant: small-caps;
+  margin: 20px 0;
   border: 2px solid transparent;
-  border-radius: 8px;
-  padding: 0.6em 1.2em;
-  
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   cursor: pointer;
-
   transition: all 0.25s;
 }
 
 button:hover {
-  background-color: var(--color-gray-200);
-  border-color: #646cff;
+  background-color: var(--accent-blue);
 }
 
 button:active {
-  background-color: var(--color-gray-300);
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  background-color: var(--accent-blue);
+  border-color: var(--highlight-blue);
 }
 
 a {
