@@ -5,8 +5,10 @@ import SearchBar from "../SearchBar/SearchBar.jsx";
 import PaginationBar from "../Pagination/PaginationBar";
 import TagDropdown from "../SearchBar/TagDropdown";
 import { useResourceContext, pageSize } from "../../context/ResourceContext";
+import LoadingScreen from "./LoadingScreen";
+import ErrorScreen from "./ErrorScreen";
 
-function AppContent() {
+function AppLayout() {
     const {
         resources,
         tagMap,
@@ -20,24 +22,8 @@ function AppContent() {
     } = useResourceContext();
 
     // if remote server fails
-    if (status === "failed") {
-        return (
-            <div className="retry">
-                <h2>Failed to load resources.</h2>
-                <p>Please try again later.</p>
-                <button onClick={() => fetchData()}>Retry</button>
-            </div>
-        );
-    }
-
-    if (status === "loading" || !tagMap) {
-        return (
-            <div className="loading">
-                <h2>Fetching Data...</h2>
-                <div className="spinner"></div>
-            </div>
-        );
-    }
+    if (status === "failed") return <ErrorScreen onRetry={fetchData} />;
+    if (status === "loading" || !tagMap) return <LoadingScreen />;
 
     return (
         <>
@@ -67,4 +53,4 @@ function AppContent() {
         </>
     );
 }
-export default AppContent;
+export default AppLayout;
