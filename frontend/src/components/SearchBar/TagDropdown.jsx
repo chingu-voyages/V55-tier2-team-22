@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import { getTags } from "@/util/getResourceData";
 
 // Styles for <Select> component.
 // This object is declared outside of this component so it isn't recreated every render, 
@@ -61,42 +59,24 @@ const dropdownStyles = {
   })
 };
 
-function TagDropdown({ onTagSelect }) {
-  const [tags, setTags] = useState([]);
-  const [selectedTags, setSelectedTags] = useState([]);
+function TagDropdown({ tags = [], selectedTags = [], onTagSelect }) {
+  const options = tags.map(tag => ({ value: tag, label: tag }));
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const tagsData = await getTags();
-        setTags(tagsData);
-      } catch (error) {
-        console.error("Failed to fetch tags:", error);
-      }
-    }
-    fetchData();
-  }, []);
+  const selectedOptions = options.filter(opt => selectedTags.includes(opt.value));
 
-  const options = tags.map((tag) => ({
-    value: tag.tag,
-    label: tag.tag
-  }));
-
-  const handleChange = (selected) => {
-    const selectedValues = selected ? selected.map((option) => option.value) : [];
-    setSelectedTags(selectedValues);
-    onTagSelect(selectedValues); // Pass selected tag strings to parent
+  const handleChange = selected => {
+    const selectedValues = selected ? selected.map(opt => opt.value) : [];
+    onTagSelect(selectedValues);
   };
 
   return (
     <div className="max-w-sm inline-block py-8">
       <label htmlFor="tagDropdown">Search by Tags:</label>
-
       <Select
         id="tagDropdown"
         isMulti
         options={options}
-        value={options.filter((opt) => selectedTags.includes(opt.value))}
+        value={selectedOptions}
         onChange={handleChange}
         placeholder="Select tags..."
         styles={dropdownStyles}

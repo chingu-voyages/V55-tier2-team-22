@@ -15,11 +15,15 @@ function AppLayout() {
         status,
         visibleResources,
         filteredResources,
+        selectedTags,
         itemDisplayRange,
         onPageIndexChange,
         onTagSelect,
         fetchData
     } = useResourceContext();
+
+    // Convert tagMap (id → tag string) to array of tags for dropdown
+    const tags = tagMap ? Object.values(tagMap) : [];
 
     // if remote server fails
     if (status === "failed") return <ErrorScreen onRetry={fetchData} />;
@@ -34,7 +38,12 @@ function AppLayout() {
             <SearchBar />
 
             {/* Tags Dropdown Selection */}
-            <TagDropdown onTagSelect={onTagSelect} />
+            <TagDropdown
+                tags={tags}
+                selectedTags={selectedTags}
+                onTagSelect={onTagSelect}
+            />
+
 
             {/* Show the resources fetched from the API */}
             <ResourceList resourceList={visibleResources} tagMap={tagMap} />
