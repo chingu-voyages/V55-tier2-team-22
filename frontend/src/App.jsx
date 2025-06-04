@@ -3,67 +3,22 @@ import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/footer";
 import ResourceList from "./components/Resources/ResourceList";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
-import { useEffect, useState } from "react";
 import PaginationBar from "./components/Pagination/PaginationBar";
-import { computeRangeFromPageIndex } from "./util/pagination";
 import TagDropdown from "./components/SearchBar/TagDropdown";
-import { getResources, getTags } from "@/util/getResourceData";
+import { ResourceProvider, useResourceContext, pageSize } from "./context/ResourceContext";
 
-const initialPageIndex = 0;
-const pageSize = 9;
-
-function App() {
-  const [resources, setResources] = useState([]);
-  const [tagMap, setTagMap] = useState(null); // null until loaded
-  const [status, setStatus] = useState("loading"); //loading, failed, succeeded
-  // for pagination
-  const [itemDisplayRange, setItemDisplayRange] = useState(
-    computeRangeFromPageIndex(initialPageIndex, pageSize)
-  );
-  // for searching by Tags
-  const [selectedTags, setSelectedTags] = useState([]);
-
-  async function fetchData() {
-    setStatus("loading");
-    try {
-      const [resourcesData, tagsData] = await Promise.all([getResources(), getTags()]);
-
-      // Convert tags into a map using string keys
-      const tagMapObj = {};
-      tagsData.forEach((tag) => {
-        tagMapObj[String(tag.id)] = tag.tag;
-      });
-
-      setResources(resourcesData);
-      setTagMap(tagMapObj); // set AFTER map is ready
-      setStatus("succeeded");
-    } catch (error) {
-      console.error("Failed to fetch resources or tags:", error);
-      setStatus("failed");
-    }
-  }
-
-  // fetch data from remote API - call function
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  // Filter resources based on selectedTags
-  const filteredResources =
-    selectedTags.length === 0
-      ? resources
-      : resources.filter((resource) => {
-        const resourceTagNames = (resource.appliedTags || []).map((id) => tagMap[id]);
-        // Check if resource has any tag from selectedTags
-        return selectedTags.some((tag) => resourceTagNames.includes(tag));
-      });
-
-  // Paginate
-  const visibleResources = filteredResources.slice(itemDisplayRange.start, itemDisplayRange.end);
-
-  function onPageIndexChange(index) {
-    setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
-  }
+function AppContent() {
+  const {
+    resources,
+    tagMap,
+    status,
+    visibleResources,
+    filteredResources,
+    itemDisplayRange,
+    onPageIndexChange,
+    onTagSelect,
+    fetchData
+  } = useResourceContext();
 
   // if remote server fails
   if (status === "failed") {
@@ -94,11 +49,7 @@ function App() {
       <SearchBar />
 
       {/* Tags Dropdown Selection */}
-      <TagDropdown onTagSelect={(tags) => {
-        setSelectedTags(tags);
-        // update pagination based on tags
-        setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
-      }} />
+      <TagDropdown onTagSelect={onTagSelect} />
 
       {/* Show the resources fetched from the API */}
       <ResourceList resourceList={visibleResources} tagMap={tagMap} />
@@ -115,6 +66,14 @@ function App() {
       {/* Footer of the App */}
       <Footer />
     </>
+  );
+}
+
+function App() {
+  return (
+    <ResourceProvider>
+      <AppContent />
+    </ResourceProvider>
   );
 }
 
