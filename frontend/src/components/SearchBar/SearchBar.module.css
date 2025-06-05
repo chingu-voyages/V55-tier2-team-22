@@ -1,11 +1,12 @@
 /* Search Bar Styles */
 
-.input_container {
-  position: relative;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding-top: 0.5em;
+
+/* .input_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: .5em;
+
 }
 
 .search_bar {
@@ -16,29 +17,7 @@
   padding: 0.5em 2em 0.5em 0.5em;
   /* padding right for icon space */
   font-size: 1rem;
-  box-sizing: border-box;
-}
 
-.remove_icon {
-  position: absolute;
-  right: 0.75em;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-weight: bold;
-  color: #888;
-  user-select: none;
-  font-size: 1.5rem;
-  padding: 0;
-  background-color: transparent;
-  border: none;
-  outline: none;
+} */
 
-  &:hover,
-  &:focus,
-  &:active {
-    background-color: transparent;
-    border: none;
-    outline: none;
-  }
-}
+

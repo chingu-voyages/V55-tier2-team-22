@@ -1,16 +1,10 @@
+
+
 import "./App.css";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/footer";
-import ResourceList from "./components/Resources/ResourceList";
-import SearchBar from "./components/SearchBar/SearchBar.jsx";
-import { useEffect, useState } from "react";
-import PaginationBar from "./components/Pagination/PaginationBar";
-import { computeRangeFromPageIndex } from "./util/pagination";
-import TagDropdown from "./components/SearchBar/TagDropdown";
-import { getResources, getTags } from "@/util/getResourceData";
+import SearchPage from "./components/SearchBar/SearchPage";
 
-const initialPageIndex = 0;
-const pageSize = 9;
 
 function App() {
   const [resources, setResources] = useState([]);
@@ -91,26 +85,10 @@ function App() {
       <Header total={resources.length} />
 
       {/* Search Bar */}
-      <SearchBar />
 
-      {/* Tags Dropdown Selection */}
-      <TagDropdown onTagSelect={(tags) => {
-        setSelectedTags(tags);
-        // update pagination based on tags
-        setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
-      }} />
-
+      <SearchPage />
       {/* Show the resources fetched from the API */}
-      <ResourceList resourceList={visibleResources} tagMap={tagMap} />
 
-      {/* Pagination */}
-      <PaginationBar
-        firstItemIndex={itemDisplayRange.start}
-        pageSize={pageSize}
-        totalItems={filteredResources.length}
-        maxVisiblePageButtons={5}
-        onChangePage={onPageIndexChange}
-      ></PaginationBar>
 
       {/* Footer of the App */}
       <Footer />
