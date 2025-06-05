@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import ResourceCard from "./ResourceCard";
 import styles from "./Resource.module.css";
@@ -71,6 +72,8 @@ function ResourceList({ displayRange, selectedTags }) {
     });
 
 
+
+function ResourceList({ resourceList, tagMap }) {
   return (
     <>
 
