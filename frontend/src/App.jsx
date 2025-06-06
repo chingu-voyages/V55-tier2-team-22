@@ -24,6 +24,12 @@ function App() {
   // for searching by Tags
   const [selectedTags, setSelectedTags] = useState([]);
 
+  // for sorting button
+  const [sortBy, setSortBy] = useState("title");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+
+
   async function fetchData() {
     setStatus("loading");
     try {
@@ -64,6 +70,12 @@ function App() {
 
   function onPageIndexChange(index) {
     setItemDisplayRange(computeRangeFromPageIndex(index, pageSize));
+  }
+
+  // for sorting
+  function handleSortChange(field, order) {
+    setSortBy(field);
+    setSortOrder(order);
   }
 
   // if remote server fails
