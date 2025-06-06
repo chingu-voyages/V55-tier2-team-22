@@ -56,14 +56,20 @@ function App() {
   }, []);
 
   // Filter resources based on selectedTags
-  const filteredResources =
-    selectedTags.length === 0
-      ? resources
-      : resources.filter((resource) => {
+  const filteredResources = (selectedTags.length === 0
+    ? resources
+    : resources.filter((resource) => {
         const resourceTagNames = (resource.appliedTags || []).map((id) => tagMap[id]);
-        // Check if resource has any tag from selectedTags
         return selectedTags.some((tag) => resourceTagNames.includes(tag));
-      });
+      })
+  ).sort((a, b) => {
+    let aValue = sortBy === "title" ? a.name.toLowerCase() : a.createdAt;
+    let bValue = sortBy === "title" ? b.name.toLowerCase() : b.createdAt;
+
+    if (aValue < bValue) return sortOrder === "asc" ? -1 : 1;
+    if (aValue > bValue) return sortOrder === "asc" ? 1 : -1;
+    return 0;
+  });
 
   // Paginate
   const visibleResources = filteredResources.slice(itemDisplayRange.start, itemDisplayRange.end);
@@ -115,7 +121,7 @@ function App() {
 
       <SearchBar/>
       {/* Sort Button */}
-      <SortButton/>
+      <SortButton onSortChange={handleSortChange} />
       {/* Show the resources fetched from the API */}
       <ResourceList resourceList={visibleResources} tagMap={tagMap} />
 
