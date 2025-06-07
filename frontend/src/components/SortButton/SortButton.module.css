@@ -1,0 +1,43 @@
+.sort_button {
+    display: flex;
+}
+
+.container{
+    margin-top: 4em;
+    border-bottom: 1px solid var(--highlight-blue);
+    padding-bottom: 1em;
+}
+
+.toggleButton {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    color: black;
+}
+
+.sortOptions {
+    background-color: aliceblue;
+    width: 30%;
+    
+}
+
+.toggleButton:hover {
+    font-style: italic;
+    background-color: transparent;
+}
+
+.toggleBorder {
+    border: .5px solid black;
+    margin: 0em 0.2em;
+}
+
+.active {
+  background-color:aqua;
+  border: 1px solid var(--highlight-blue);
+  margin: 0.1rem;
+  color: black;
+  border-color: #888;
+}
