@@ -119,8 +119,6 @@ function App() {
         setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
       }} />
 
-      <SearchBar/>
-      {/* Sort Button */}
       <SortButton onSortChange={handleSortChange} />
       {/* Show the resources fetched from the API */}
       <ResourceList resourceList={visibleResources} tagMap={tagMap} />
