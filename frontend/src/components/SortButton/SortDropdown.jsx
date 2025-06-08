@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './SortButton.module.css';
+import styles from './SortDropdown.module.css';
 
 function SortButton({ onSortChange }) {
   const [showOptions, setShowOptions] = useState(false);

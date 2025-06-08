@@ -11,7 +11,7 @@ import { getResources, getTags } from "@/util/getResourceData";
 
 const initialPageIndex = 0;
 const pageSize = 9;
-import SortButton from "./components/SortButton/Sortbutton.jsx";
+import SortButton from "./components/SortButton/SortDropdown.jsx";
 
 function App() {
   const [resources, setResources] = useState([]);
@@ -27,8 +27,6 @@ function App() {
   // for sorting button
   const [sortBy, setSortBy] = useState("title");
   const [sortOrder, setSortOrder] = useState("asc");
-
-
 
   async function fetchData() {
     setStatus("loading");
@@ -56,12 +54,13 @@ function App() {
   }, []);
 
   // Filter resources based on selectedTags
-  const filteredResources = (selectedTags.length === 0
-    ? resources
-    : resources.filter((resource) => {
-        const resourceTagNames = (resource.appliedTags || []).map((id) => tagMap[id]);
-        return selectedTags.some((tag) => resourceTagNames.includes(tag));
-      })
+  const filteredResources = (
+    selectedTags.length === 0
+      ? resources
+      : resources.filter((resource) => {
+          const resourceTagNames = (resource.appliedTags || []).map((id) => tagMap[id]);
+          return selectedTags.some((tag) => resourceTagNames.includes(tag));
+        })
   ).sort((a, b) => {
     let aValue = sortBy === "title" ? a.name.toLowerCase() : a.createdAt;
     let bValue = sortBy === "title" ? b.name.toLowerCase() : b.createdAt;
@@ -113,11 +112,13 @@ function App() {
       <SearchBar />
 
       {/* Tags Dropdown Selection */}
-      <TagDropdown onTagSelect={(tags) => {
-        setSelectedTags(tags);
-        // update pagination based on tags
-        setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
-      }} />
+      <TagDropdown
+        onTagSelect={(tags) => {
+          setSelectedTags(tags);
+          // update pagination based on tags
+          setItemDisplayRange(computeRangeFromPageIndex(0, pageSize));
+        }}
+      />
 
       <SortButton onSortChange={handleSortChange} />
       {/* Show the resources fetched from the API */}
