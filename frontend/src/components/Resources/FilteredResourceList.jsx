@@ -7,7 +7,7 @@ function FilteredResourceList({ resources, tagMap, filterType }) {
 
   if (resources.length === 0) {
     return (
-      <div className="w-max items-center mx-auto my-4">
+      <div className="w-max items-center mx-auto my-5">
         <h3 className="text-2xl">
           Sorry no results found for this <b>{filterType}</b>
         </h3>
