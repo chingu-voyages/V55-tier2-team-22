@@ -24,7 +24,7 @@ function App() {
         handleSearchChange={handleSearch}
         handleFilterSelect={handleFilterSelect}
       />
-      {/* <SearchPage /> */}
+
       {/* Show the resources fetched from the API */}
       <ResourceList
         filteredResources={filteredResources}
