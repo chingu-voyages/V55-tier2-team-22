@@ -1,6 +1,4 @@
-// import styles from "./SearchBar.module.css";
 import { Search } from "lucide-react";
-import SearchPage from "./SearchPage";
 
 function SearchBar({
   filterType,
@@ -20,21 +18,18 @@ function SearchBar({
             value={searchQuery}
             onChange={handleSearchChange}
             placeholder="Search..."
-            className="outline-2 lg:w-xl outline-cyan-400 rounded-2xl py-2 px-4 md:ml-5 pl-8"
+            className="outline-2 lg:w-xl outline-cyan-400 rounded-2xl py-2 px-4 md:ml-5 pl-8 focus:outline-none focus:ring-2 focus:ring-cyan-900 transition"
           />
         </div>
 
         <select
-          className="border rounded p-2 text-black bg-white my-2.5 outline-0"
+          className="border rounded p-2 text-black bg-white my-2.5 outline-0 cursor-pointer"
           value={filterType}
           onChange={(e) => handleFilterSelect(e.target.value)}
         >
           <option value="title">Title</option>
           <option value="author">Author</option>
         </select>
-        <div className="px-3 outline-amber-50 bg-amber-50 text-black rounded-lg py-2 cursor-pointer">
-          Search
-        </div>
       </div>
     </div>
   );

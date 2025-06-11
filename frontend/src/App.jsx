@@ -3,18 +3,33 @@ import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/footer";
 import ResourceList from "./components/Resources/ResourceList";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
-import SearchPage from "./components/SearchBar/SearchPage";
+import { useResourceSearch } from "@/components/Hooks/useResourceSearch";
 
 function App() {
+  const {
+    filteredResources,
+    selectedFilter,
+    searchQuery,
+    handleSearch,
+    handleFilterSelect,
+  } = useResourceSearch();
   return (
     <>
       {/* Header of the App */}
       <Header />
       {/* Search Bar */}
-      {/* <SearchBar /> */}
-      <SearchPage />
+      <SearchBar
+        searchQuery={searchQuery}
+        filterType={selectedFilter}
+        handleSearchChange={handleSearch}
+        handleFilterSelect={handleFilterSelect}
+      />
+      {/* <SearchPage /> */}
       {/* Show the resources fetched from the API */}
-      {/* <ResourceList /> */}
+      <ResourceList
+        filteredResources={filteredResources}
+        filterType={selectedFilter}
+      />
       {/* Footer of the App */}
       <Footer />
     </>
