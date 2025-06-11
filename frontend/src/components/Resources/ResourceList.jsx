@@ -92,11 +92,12 @@ function ResourceList({ filteredResources, filterType }) {
         </div>
 
         <div className={styles.load_more}>
-          {visibleArticles < resources.length && (
-            <button onClick={() => setVisibleArticles((prev) => prev + 3)}>
-              Load More
-            </button>
-          )}
+          {visibleArticles < resources.length &&
+            visibleArticles < filteredResources.length && (
+              <button onClick={() => setVisibleArticles((prev) => prev + 3)}>
+                Load More
+              </button>
+            )}
         </div>
       </div>
     </>

@@ -1,6 +1,6 @@
 // src/hooks/useResourceSearch.js
 import { useState, useEffect } from "react";
-import { getResources, getTags } from "../../util/getResourceData";
+import { getResources, getTags } from "@/util/getResourceData";
 
 export function useResourceSearch() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -39,32 +39,27 @@ export function useResourceSearch() {
   }, []);
 
   // Filter resources when searchQuery or selectedFilter changes
-  useEffect(() => {
-    if (!searchQuery.trim()) {
-      setFilteredResources(allResources);
-      return;
+  const filterResources = (query, type, data) => {
+    if (!query.trim()) {
+      return data;
     }
-
-    const filtered = allResources.filter((resource) => {
-      const searchValue = searchQuery.toLowerCase();
-      if (selectedFilter === "title") {
-        return resource.name.toLowerCase().includes(searchValue);
-      }
-      if (selectedFilter === "author") {
-        return resource.author.toLowerCase().includes(searchValue);
-      }
-      return false;
-    });
-
-    setFilteredResources(filtered);
-  }, [searchQuery, selectedFilter, allResources]);
+    const lowered = query.toLowerCase();
+    return data.filter((res) =>
+      type === "title"
+        ? res.name.toLowerCase().includes(lowered)
+        : res.author.toLowerCase().includes(lowered)
+    );
+  };
 
   const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
+    const value = e.target.value;
+    setSearchQuery(value);
+    setFilteredResources(filterResources(value, selectedFilter, allResources));
   };
 
   const handleFilterSelect = (value) => {
     setSelectedFilter(value);
+    setFilteredResources(filterResources(searchQuery, value, allResources));
   };
 
   const returnValue = {
