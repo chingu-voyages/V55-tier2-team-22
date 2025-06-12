@@ -133,7 +133,12 @@ function App() {
       <SortDropdown sortBy={sortBy} sortOrder={sortOrder} onSortChange={handleSortChange} />
 
       {/* Show the resources fetched from the API */}
-      <ResourceList resources={visibleResources} tagMap={idToTagMap} />
+      <ResourceList
+        resources={visibleResources}
+        tagMap={idToTagMap}
+        clearAllFilters={handleClearAll}
+        areFiltersUsed={areFilterOptionsUsed}
+      />
 
       {/* Pagination */}
       <PaginationBar
