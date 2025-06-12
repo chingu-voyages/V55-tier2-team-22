@@ -2,63 +2,72 @@
 @import "tailwindcss";
 
 /* Global styles for standard HTML elements should go here. */
-
-/* Colors */
-
-:root {
-  --primary-blue-dark: #0f5fa6; /* Blue1 */
-  --secondary-blue: #0a8cbf; /* Blue2 */
-  --accent-blue: #04b2d9; /* Blue3 */
-  --highlight-blue: #05dbf2; /* Blue4 */
-  --black: #0d0d0d; /* Black */
-  --white: white;
+/* All styles should go inside the @layer base block to allow TailwindCSS to override them easily. */
+@theme {
+  --color-mono-50: rgb(255, 255, 255);
+  --color-mono-100: rgb(231, 231, 231);
+  --color-mono-200: rgb(208, 208, 208);
+  --color-mono-300: rgb(185, 185, 185);
+  --color-mono-400: rgb(162, 162, 162);
+  --color-mono-500: rgb(115, 115, 115);
+  --color-mono-600: rgb(92, 92, 92);
+  --color-mono-700: rgb(69, 69, 69);
+  --color-mono-800: rgb(46, 46, 46);
+  --color-mono-900: rgb(23, 23, 23);
+  --color-mono-950: rgb(0, 0, 0);
 }
 
-body {
-  background-color: var(--black);
-  color: var(--white);
-  margin: 0 auto;
-  width: 80%;
-}
+@layer base {
+  :root {
+    --primary-blue-dark: #0f5fa6; /* Blue1 */
+    --secondary-blue: #0a8cbf; /* Blue2 */
+    --accent-blue: #04b2d9; /* Blue3 */
+    --highlight-blue: #05dbf2; /* Blue4 */
+    --black: #0d0d0d; /* Black */
+    --white: white;
+  }
 
-button {
-  color: var(--color-gray-950);
-  background-color: var(--color-gray-50);
-  
-  border: 2px solid transparent;
-  border-radius: 8px;
-  padding: 0.6em 1.2em;
-  
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
+  body {
+    background-color: var(--black);
+    color: var(--white);
+    margin: 0 auto;
+    width: 80%;
+    font-family: "Roboto", sans-serif;
+  }
 
-  transition: all 0.25s;
-}
+  button {
+    background-color: var(--primary-blue-dark);
+    color: var(--white);
+    border: none;
+    border-radius: 20px;
+    padding: 0.4em 1.3em;
+    font-variant: small-caps;
+    margin: 20px 0;
+    border: 2px solid transparent;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
 
-button:hover {
-  background-color: var(--color-gray-200);
-  border-color: #646cff;
-}
+  button:hover {
+    background-color: var(--accent-blue);
+  }
 
-button:active {
-  background-color: var(--color-gray-300);
-  border-color: #646cff;
-}
+  button:active {
+    background-color: var(--accent-blue);
+    border-color: var(--highlight-blue);
+  }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+  a {
+    color: var(--accent-blue);
+    font-weight: 500;
+    text-decoration: none;
+  }
 
-a {
-  color: var(--accent-blue);
-  font-weight: 500;
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--primary-blue-dark);
-  text-decoration: underline dotted var(--accent-blue);
+  a:hover {
+    color: var(--primary-blue-dark);
+    text-decoration: underline dotted var(--accent-blue);
+  }
 }

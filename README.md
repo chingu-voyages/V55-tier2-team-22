@@ -1,47 +1,50 @@
 # 📚Table of Contents
 
 - [Project Overview](#project-overview)
-- [Live Link](#live-site)
+- [Live Link](#live-link)
 - [Features](#features)
 - [Screenshots](#screenshots)
 - [How It Works](#how-it-works)
-- [Technologies & Dependencies Used](#technologies--dependencies-used)
+- [Technologies & Dependencies](#technologies--dependencies)
 - [Prerequisites](#prerequisites)
 - [Clone & Run Locally](#clone--run-locally)
-- [Team](#our-team)
+- [Our Team](#our-team)
 - [Special Thanks](#special-thanks)
 
 
 ## Project Overview
 
-A web app that enables developers to easily search, filter, and access curated technical resources from the Chingus Discord community.
+A web app called **Resourcify** that enables developers to easily search, filter, and access curated technical resources from the Chingus Discord community.
 
 ## Live Link
 
 Check the website out: https://dev.v55-team22.pages.dev/
 
 ## Features
+- Fetches a large pool of resources and displays them in an easy-to-navigate format.
+- Search by topic or author.
+- Filter resources using tags.
+- Sort by publication date or alphabetically.
+- AI feature to help navigate the App.
 
 ## Screenshots
 
 ## How it works
 
-- Search the resource library using tags or the search bar.
+- Search the resource library using the search bar. Enter either author name or title.
+- Search the resource library using tags.
+- Organize the resources in ascending or descending order of date published on or alphabetical order of titles.
+- Use AI Chat to ask questions about the App and how to use it efficiently.
 
 ## Technologies & Dependencies
 
-|***dependencies***  |                 |                  |
-|--------------------|-----------------|------------------|
-| react              |                 |                  |
-| react-dom          |                 |                  |
-| react-icons        |                 |                  |
-| vite               |                 |                  |
-|                    |                 |                  |
-|                    |                 |                  |
-|                    |                 |                  |
-|                    |                 |                  |
-|                    |                 |                  |
-|                    |                 |                  |
+|***dependencies***  |                      |                  |
+|--------------------|----------------------|------------------|
+| react              | google/generative-ai | estlint          |
+| react-dom          | tailwindcss          |                  |
+| react-icons        | postcss              |                  |
+| vite               | prettier             |                  |
+| react-select       | vitest               |                  |
 
 
 ## Prerequisites
@@ -71,15 +74,11 @@ Open browser
 ```http://localhost:5173/```
 
 
-## 👥 Our Team
+## Our Team
 
-### Project Manager
+### Project Manager:  Khalid
 
-####  Khalid
-
-### UI/UX Designer
-
-#### Sophie
+### UI/UX Designer: Sophie
 
 ### Scrum Masters
 
@@ -100,7 +99,7 @@ Open browser
 - Micheal: [GitHub](https://github.com/Izunnaya) / [LinkedIn](https://www.linkedin.com/in/michael-ugorji/)
 
 
-## 🙏 Special Thanks
+## Special Thanks
 
 We as a whole team would like to thank the **Chingu** platform and community for this opportunity to learn, improve, and collaborate.
 

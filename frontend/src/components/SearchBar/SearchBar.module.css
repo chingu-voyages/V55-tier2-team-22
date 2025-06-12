@@ -1,18 +1,56 @@
 /* Search Bar Styles */
 
-/* .input_container {
+.input_container {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: .5em;
+  padding-top: 0.5em;
 }
 
 .search_bar {
-  width: 80%;
-  max-width: 600px;
+  width: 100%;
   height: 30px;
   border-radius: 8px;
   border: 1px solid var(--highlight-blue);
-  padding: 0.5em;
+  padding: 0.5em 2em 0.5em 0.5em;
+  /* padding right for icon space */
   font-size: 1rem;
-} */
+  box-sizing: border-box;
+}
+
+.remove_icon {
+  position: absolute;
+  right: 0.75em;
+  top: 30%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-weight: bold;
+  color: #888;
+  -webkit-user-select: none;
+  user-select: none;
+  font-size: 1.5rem;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  margin: 0;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: transparent;
+    border: none;
+    outline: none;
+  }
+}
+
+.clear_button {
+  width: 100%;
+  background-color: #888;
+  text-align: center;
+  text-transform: capitalize;
+  border: none;
+  outline: none;
+  margin: 0;
+  border-radius: 0;
+}

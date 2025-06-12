@@ -1,0 +1,44 @@
+.page_button,
+.page_button_current {
+  display: inline-flex;
+
+  width: calc(var(--spacing) * 10);
+  height: calc(var(--spacing) * 10);
+  padding: 0;
+
+  justify-content: center;
+  align-items: center;
+
+  outline: none !important;
+
+  transition: none;
+  font-size: 1rem;
+}
+
+.page_button {
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-950);
+}
+
+.page_button:disabled {
+  background-color: var(--color-gray-400);
+  border: none !important;
+  cursor: default !important;
+}
+
+.page_button_current {
+  color: var(--color-cyan-950);
+  background-color: var(--color-cyan-500);
+  border: 1px solid var(--color-cyan-100);
+
+  cursor: default;
+}
+
+.page_button_current:hover {
+  background-color: var(--color-cyan-500);
+  border: 1px solid var(--color-cyan-100);
+}
+
+.page_button_current:active {
+  background-color: var(--color-cyan-500);
+}
