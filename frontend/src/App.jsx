@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header/Header.jsx";
 import Footer from "./components/Footer/footer";
 import ResourceList from "./components/Resources/ResourceList";
+import NoResourcesFound from "./components/Resources/NoResourcesFound";
 import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import { useMemo, useState } from "react";
 import PaginationBar from "./components/Pagination/PaginationBar";
@@ -133,12 +134,14 @@ function App() {
       <SortDropdown sortBy={sortBy} sortOrder={sortOrder} onSortChange={handleSortChange} />
 
       {/* Show the resources fetched from the API */}
-      <ResourceList
-        resources={visibleResources}
-        tagMap={idToTagMap}
-        clearAllFilters={handleClearAll}
-        areFiltersUsed={areFilterOptionsUsed}
-      />
+      {filteredResources.length > 0 ? (
+        <ResourceList resources={visibleResources} tagMap={idToTagMap} />
+      ) : (
+        <NoResourcesFound
+          areFiltersUsed={areFilterOptionsUsed}
+          clearAllFilters={handleClearAll}
+        ></NoResourcesFound>
+      )}
 
       {/* Pagination */}
       <PaginationBar
