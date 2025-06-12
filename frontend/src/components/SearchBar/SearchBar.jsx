@@ -24,12 +24,6 @@ function SearchBar({
             placeholder="Search..."
             className="outline-2 lg:w-xl outline-cyan-400 rounded-2xl py-2 px-4 md:ml-5 pl-8 focus:outline-none focus:ring-2 focus:ring-cyan-900 transition"
           />
-
-          {showClearAllButton && (
-            <button className={styles.clear_button} onClick={onClearAll}>
-              Clear all
-            </button>
-          )}
         </div>
 
         <select
@@ -41,6 +35,12 @@ function SearchBar({
           <option value="author">Author</option>
         </select>
       </div>
+
+      {showClearAllButton && (
+        <button className={styles.clear_button} onClick={onClearAll}>
+          Clear all
+        </button>
+      )}
     </div>
   );
 }

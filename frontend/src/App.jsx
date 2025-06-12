@@ -27,6 +27,7 @@ function App() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchFilter, setSearchFilter] = useState("");
+  const areFilterOptionsUsed = searchTerm || (selectedTags && selectedTags.length > 0);
 
   // Sorting options
   const [sortBy, setSortBy] = useState("title");
@@ -117,7 +118,7 @@ function App() {
           goToListPage(0);
         }}
         onClearAll={handleClearAll}
-        showClearAllButton={false}
+        showClearAllButton={areFilterOptionsUsed}
       />
 
       {/* Tags Dropdown Selection */}
