@@ -27,7 +27,7 @@ function App() {
   // Filter options
   const [selectedTags, setSelectedTags] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchFilter, setSearchFilter] = useState("");
+  const [searchFilter, setSearchFilter] = useState("title");
   const areFilterOptionsUsed = searchTerm || (selectedTags && selectedTags.length > 0);
 
   // Sorting options
