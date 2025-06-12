@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { IoSearchOutline } from "react-icons/io5";
 
 function SearchBar({
   filterType,
@@ -11,7 +11,7 @@ function SearchBar({
       <div className="relative mx-auto w-max grid grid-col-1 sm:flex justify-between gap-x-5 items-center">
         <div className="flex items-center">
           <div className="absolute inset-y-0 left-0 bottom-24 sm:bottom-0 pl-4 flex items-center pointer-events-none">
-            <Search className="md:left-5 md:top-5 md:h-5 md:w-5 md:ml-3 text-gray-400" />
+            <IoSearchOutline className="md:left-5 md:top-5 md:h-5 md:w-5 md:ml-3 text-gray-400" />
           </div>
           <input
             type="text"
