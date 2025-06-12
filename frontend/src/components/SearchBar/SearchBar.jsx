@@ -6,8 +6,7 @@ function SearchBar({
   searchFilter,
   setSearchTerm,
   setSearchFilter,
-  onClearAll,
-  showClearAllButton
+  onClearAll
 }) {
   return (
     <div className="max-w-screen">
@@ -36,7 +35,7 @@ function SearchBar({
         </select>
       </div>
 
-      {showClearAllButton && (
+      {searchTerm && (
         <button className={styles.clear_button} onClick={onClearAll}>
           Clear all
         </button>

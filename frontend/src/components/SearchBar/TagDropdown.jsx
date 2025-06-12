@@ -110,7 +110,7 @@ function TagDropdown({ onTagSelect, selectedTags = [] }) {
   };
 
   return (
-    <div className="max-w-sm inline-block py-8">
+    <div>
       <label htmlFor="tagDropdown">Search by Tags:</label>
 
       <Select

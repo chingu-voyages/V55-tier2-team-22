@@ -1,4 +1,3 @@
-import styles from "./footer.module.css";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const developers = [
@@ -41,15 +40,16 @@ const scrumMasters = [
 ];
 
 const Footer = () => {
+   const currentYear = new Date().getFullYear();
   return (
-    <footer className="flex flex-col pt-5 lg:flex-row">
+    <footer className="flex flex-col pt-5 lg:flex-row border-t-1 border-cyan-500">
       <div className="pb-8 lg:pb-0 lg:pr-12">
-        <FaGithub size={28} color="#05DBF2" className={styles.icon} />
+        <FaGithub size={28}/>
         <span>
           <a href="https://github.com/chingu-voyages/V55-tier2-team-22">GitHub Repository</a>
         </span>
-        <p className="pt-5 text-xs">© 2025 App Name.</p>
-        <p>This project was built by team 22 as part of the Chingu Voyage 55</p>
+        <p className="pt-5">© {currentYear} Resourcify</p>
+        <p className="text-xs">This project was built by team 22 as part of the Chingu Voyage 55</p>
       </div>
       <div className="flex flex-row justify-evenly pt-4 md:flex-col lg:grow lg:pl-12">
         <div className="flex flex-col items-center md:flex-row md:justify-between">
