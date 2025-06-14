@@ -45,6 +45,18 @@ export function computeTotalNumberOfPages(totalItems, pageSize) {
 }
 
 /**
+ * Determines if a page index exists within a computed range of pages.
+ * @param {number} pageIndex - The page index.
+ * @param {number} totalItems - The total number of items.
+ * @param {number} pageSize - The maximum number of items in one page.
+ * @returns {boolean}
+ */
+export function doesPageIndexExist(pageIndex, totalItems, pageSize) {
+  const max = computeTotalNumberOfPages(totalItems, pageSize);
+  return pageIndex >= 0 && pageIndex < max;
+}
+
+/**
  * @param {number} pageIndex The page index.
  * @param {number} pageSize The maximum number of items in one page.
  * @returns {{start: number, end: number}} The range of items that the page represents. `end` is exclusive i.e. not included in the page.

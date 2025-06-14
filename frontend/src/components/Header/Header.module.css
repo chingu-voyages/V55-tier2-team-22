@@ -53,7 +53,8 @@
 }
 
 .img_logo {
-  width: 15%;
+  height: 3rem;
+  max-width: 50%;
   object-fit: contain;
   padding-bottom: 1rem;
 }

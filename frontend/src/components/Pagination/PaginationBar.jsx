@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { computePageIndex, computePageArrangement } from "@/util/pagination";
+import { computePageIndex, computePageArrangement, doesPageIndexExist } from "@/util/pagination";
 import PageButton from "./PageButton.jsx";
 import { FaAngleLeft } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa";
@@ -15,7 +15,7 @@ function PaginationBar({ firstItemIndex, totalItems, pageSize, maxVisiblePageBut
   const [diffBetweenScrollAndElY, setDiffBetweenScrollAndElY] = useState(null);
 
   function isPageIndexIncluded(pageIndex) {
-    return arrangement != null && arrangement.indexOf(pageIndex) !== -1;
+    return doesPageIndexExist(pageIndex, totalItems, pageSize);
   }
 
   useEffect(() => {

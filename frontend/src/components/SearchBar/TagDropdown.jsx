@@ -10,7 +10,8 @@ const dropdownStyles = {
     ...base,
     minWidth: "15rem",
     maxWidth: "50vw",
-    margin: "1rem 0",
+    minHeight: "2.5rem",
+    margin: "0",
     border: "1px solid var(--color-mono-200)",
     backgroundColor: "var(--color-mono-50)",
     color: "var(--color-mono-950)",
@@ -23,7 +24,7 @@ const dropdownStyles = {
     ...base,
     backgroundColor: "var(--color-mono-50)"
   }),
-  option: (base, {isFocused}) => ({
+  option: (base, { isFocused }) => ({
     ...base,
     backgroundColor: isFocused ? "var(--color-cyan-500)" : "var(--color-mono-50)",
     color: isFocused ? "var(--color-cyan-50) " : "var(--color-mono-950)",
@@ -110,19 +111,16 @@ function TagDropdown({ onTagSelect, selectedTags = [] }) {
   };
 
   return (
-    <div>
-      <label htmlFor="tagDropdown">Search by Tags:</label>
-
-      <Select
-        id="tagDropdown"
-        isMulti
-        options={options}
-        value={options.filter((opt) => selectedTags.includes(opt.value))}
-        onChange={handleChange}
-        placeholder="Select tags..."
-        styles={dropdownStyles}
-      />
-    </div>
+    <Select
+      id="tagDropdown"
+      isMulti
+      options={options}
+      value={options.filter((opt) => selectedTags.includes(opt.value))}
+      onChange={handleChange}
+      placeholder="Select tags..."
+      styles={dropdownStyles}
+      aria-label="Tag dropdown"
+    />
   );
 }
 
