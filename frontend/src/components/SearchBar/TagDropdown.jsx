@@ -10,7 +10,7 @@ const dropdownStyles = {
     ...base,
     minWidth: "15rem",
     maxWidth: "50vw",
-    height: "2.5rem",
+    minHeight: "2.5rem",
     margin: "0",
     border: "1px solid var(--color-mono-200)",
     backgroundColor: "var(--color-mono-50)",
