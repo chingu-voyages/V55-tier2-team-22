@@ -13,6 +13,8 @@
 
 ## Project Overview
 
+![Logo](/frontend/src/assets/logo-sm.png)
+
 A web app called **Resourcify** that enables developers to easily search, filter, and access curated technical resources from the Chingus Discord community.
 
 ## Live Link
